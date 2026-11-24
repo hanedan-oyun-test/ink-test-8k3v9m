@@ -1,0 +1,1715 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#F5EFE2"><link rel="icon" href="data:,"><title>Ink Lines</title><style>:root{--paper:#F5EFE2;--paper2:#FBF7EE;--ink:#2B2B2E;--ink2:rgba(43,43,46,.62);--hair:rgba(43,43,46,.16);--st:env(safe-area-inset-top,0px);--sr:env(safe-area-inset-right,0px);--sb:env(safe-area-inset-bottom,0px);--sl:env(safe-area-inset-left,0px)}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper);color:var(--ink);font:500 14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;touch-action:none;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-text-size-adjust:100%}#app{position:fixed;left:0;top:0;width:100%;height:100vh;height:100dvh;overflow:hidden}canvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block;touch-action:none}button{font:inherit;color:inherit;border:0;background:none;padding:0;margin:0;cursor:pointer;touch-action:manipulation}button:disabled{cursor:default}button:focus-visible{outline:2px solid #284B8C;outline-offset:2px}.hide{display:none!important}.chip{height:38px;min-width:38px;display:flex;align-items:center;justify-content:center;gap:5px;padding:0 10px;background:rgba(251,247,238,.92);border:1px solid var(--hair);border-radius:19px;box-shadow:0 1px 0 rgba(43,43,46,.04),0 3px 10px rgba(70,50,20,.07);font-weight:700;font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap}.chip svg{width:18px;height:18px;flex:none;fill:currentColor}#hud{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:calc(var(--st) + 8px) calc(var(--sr) + 8px) 0 calc(var(--sl) + 8px);pointer-events:none;gap:6px}#hud>div{display:flex;gap:6px;pointer-events:auto}.dial{padding:0;width:40px;height:40px;border-radius:20px;position:relative}.dial svg{width:36px;height:36px;fill:none}.dial b{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;pointer-events:none;color:var(--ink)}.dial.rush{animation:rush 1.1s ease-in-out infinite}@keyframes rush{0%,100%{box-shadow:0 0 0 0 rgba(212,148,36,.0),0 3px 10px rgba(70,50,20,.07)}50%{box-shadow:0 0 0 5px rgba(212,148,36,.28),0 3px 10px rgba(70,50,20,.07)}}#score{min-width:58px;margin-top:1px}#score.bump b{animation:bump .35s ease-out}@keyframes bump{40%{transform:scale(1.25)}}#score b{display:inline-block}#scI svg{width:15px;height:15px}#bridges.zero{color:#C84B31}#bridges{margin-top:1px}.seg{display:flex;height:38px;margin-top:1px;border-radius:19px;background:rgba(251,247,238,.92);border:1px solid var(--hair);overflow:hidden;box-shadow:0 3px 10px rgba(70,50,20,.07)}.seg button{width:34px;height:100%;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}.seg button svg{width:16px;height:16px;fill:currentColor}.seg button.on{background:var(--ink);color:var(--paper)}#mute{padding:0;margin-top:1px}#bar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:10px;padding:0 calc(var(--sr) + 8px) calc(var(--sb) + 8px) calc(var(--sl) + 8px);pointer-events:none}#pal{display:flex;gap:4px;padding:4px 6px;background:rgba(251,247,238,.94);border:1px solid var(--hair);border-radius:26px;pointer-events:auto;box-shadow:0 3px 12px rgba(70,50,20,.09)}.pill{width:42px;height:40px;position:relative;display:flex;align-items:center;justify-content:center;border-radius:20px;transition:background .15s}.pill i{display:block;width:26px;height:10px;border-radius:5px;background:var(--c);transition:transform .15s}.pill.unused i{background:transparent;border:2px dashed var(--c);height:12px;border-radius:6px}.pill.locked i{width:8px;height:8px;border-radius:4px;background:rgba(43,43,46,.16)}.pill.on{background:rgba(43,43,46,.07);box-shadow:inset 0 0 0 2px var(--c)}.pill.on i{transform:scale(1.08)}.pill .x{position:absolute;top:-9px;right:-7px;width:22px;height:22px;border-radius:11px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.2)}.pill .x::before{content:"";position:absolute;inset:-8px}#undo{width:46px;height:46px;border-radius:23px;pointer-events:auto;padding:0}#undo svg{width:22px;height:22px;fill:none}#undo:disabled{opacity:.35}.shake{animation:shake .45s}@keyframes shake{20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}#title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse 70% 55% at 50% 46%,rgba(245,239,226,.94) 0%,rgba(245,239,226,.7) 40%,rgba(245,239,226,0) 78%);padding:calc(var(--st) + 20px) 20px calc(var(--sb) + 40px)}#title h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;font-weight:600;font-size:clamp(46px,13vmin,100px);letter-spacing:.005em;margin:0;line-height:1;color:var(--ink);text-align:center}#title .sw{display:block;width:clamp(150px,40vmin,300px);height:auto;margin:6px auto 0}#play{margin-top:clamp(20px,6vh,52px);min-width:200px;height:62px;padding:0 44px;border-radius:31px;background:var(--ink);color:var(--paper);font-size:22px;font-weight:750;letter-spacing:.06em;box-shadow:0 8px 22px rgba(43,43,46,.28),inset 0 -2px 0 rgba(0,0,0,.25);transition:transform .12s}#play:active{transform:scale(.96)}body.ready #play{animation:breathe 2.4s ease-in-out .6s infinite}@keyframes breathe{50%{box-shadow:0 8px 28px rgba(43,43,46,.36),0 0 0 7px rgba(43,43,46,.07),inset 0 -2px 0 rgba(0,0,0,.25)}}.cred{position:absolute;left:0;right:0;bottom:calc(var(--sb) + 14px);text-align:center;font-size:12px;color:var(--ink2);letter-spacing:.05em}.tbar{position:absolute;top:calc(var(--st) + 10px);right:calc(var(--sr) + 10px);display:flex;gap:6px}.tbar .chip{padding:0 10px;font-size:13px;font-weight:800;letter-spacing:.04em}#tmute{padding:0}#modal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(43,34,22,.30);padding:calc(var(--st) + 14px) calc(var(--sr) + 14px) calc(var(--sb) + 14px) calc(var(--sl) + 14px);animation:fade .2s ease-out}#mc{background:var(--paper2);border-radius:20px;border:1px solid var(--hair);box-shadow:0 18px 50px rgba(43,34,22,.28);padding:20px 18px 18px;width:100%;max-width:420px;max-height:100%;overflow:hidden;text-align:center;animation:pop .32s cubic-bezier(.2,1.25,.4,1)}@keyframes fade{from{opacity:0}}@keyframes pop{from{transform:scale(.9);opacity:0}}#mc h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600;font-size:26px;margin:2px 0 14px}.kick{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}.ups{display:grid;grid-template-columns:1fr 1fr;gap:10px}.up{background:var(--paper);border:1.5px solid var(--hair);border-radius:16px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .12s,border-color .12s}.up:hover{border-color:rgba(43,43,46,.45)}.up:active{transform:scale(.97)}.up svg{width:84px;height:54px}.up b{font-size:15px;font-weight:800}.up span{font-size:12px;color:var(--ink2);line-height:1.25}.big{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:56px;font-weight:600;line-height:1}.sub{font-size:13px;color:var(--ink2);margin-top:4px}.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.btn{height:56px;border-radius:16px;font-weight:800;font-size:14px;line-height:1.15;padding:0 10px;color:var(--paper)}.btn.b1{background:#7A3E65}.btn.b2{background:var(--ink)}.btn.b3{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--hair)}.btn:disabled{background:#b9b2a5;color:rgba(251,247,238,.9)}.btn:active:not(:disabled){transform:scale(.97)}.row{display:flex;justify-content:center;gap:10px;margin-top:14px}.seg2{display:flex;height:40px;border-radius:20px;border:1px solid var(--hair);overflow:hidden}.seg2 button{width:52px;font-weight:800;font-size:13px}.seg2 button.on{background:var(--ink);color:var(--paper)}.btn-snd{width:40px;height:40px;padding:0}.m-ad{background:rgba(18,16,14,.84)!important}.m-ad #mc{max-width:340px}.m-ad #mc h2{font-size:21px}.m-over #mc{max-width:470px}.gob{width:44px;height:44px;display:block;margin:0 auto 6px}.adtag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.2em;padding:3px 8px;border-radius:6px;background:#D49424;color:#fff;margin-bottom:8px}.m-ad .bar{height:6px;border-radius:3px;background:rgba(43,43,46,.12);overflow:hidden;margin-top:16px}.m-ad .bar i{display:block;height:100%;width:100%;background:var(--ink);transform-origin:left;animation:adp 1.5s linear forwards}@keyframes adp{from{transform:scaleX(0)}}@media (max-height:460px){#mc{padding:12px 16px 12px}#mc h2{font-size:21px;margin:0 0 8px}.up{padding:8px 8px 8px;gap:3px}.up svg{height:38px;width:70px}.big{font-size:40px}.gob{width:34px;height:34px;margin-bottom:2px}.btns{margin-top:10px}.btn{height:48px}.ups{max-width:440px;margin:0 auto}#mc{max-width:480px}}@media (max-width:370px){.seg button{width:31px}#score{min-width:50px;padding:0 8px}#bridges{padding:0 8px}}@media (orientation:landscape) and (max-height:520px){#bar{left:0;right:auto;top:50%;bottom:auto;transform:translateY(-50%);flex-direction:column;gap:8px;padding:0 0 0 calc(var(--sl) + 8px)}#pal{flex-direction:column;padding:6px 4px;gap:2px}.pill{width:40px;height:38px}.pill .x{top:-6px;right:-9px}}</style></head><body><div id="app"><canvas id="c" aria-label="Ink Lines map"></canvas><div id="hud" class="hide"><div><div id="dial" class="chip dial"></div><div id="score" class="chip"><span id="scI"></span><b id="sc">0</b></div></div><div><div id="bridges" class="chip"><span id="brI"></span><b id="br">2</b></div><div id="speed" class="seg"><button id="sp0" data-s="0"></button><button data-s="1" aria-label="1x">1×</button><button data-s="2" aria-label="2x">2×</button></div><button id="mute" class="chip"></button></div></div><div id="bar" class="hide"><div id="pal"></div><button id="undo" class="chip" disabled></button></div><div id="title"><h1>Ink Lines</h1><svg class="sw" viewBox="0 0 300 24" aria-hidden="true"><path d="M8 14 H96 L108 4 H184 L196 14 H292" fill="none" stroke="#C84B31" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="14" r="5" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2"/><path d="M146 -1l6 5-6 5-6-5z" transform="translate(0 0)" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2"/><rect x="286" y="8" width="11" height="11" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2"/></svg><button id="play">Play</button><div class="tbar"><button id="lang" class="chip">EN</button><button id="tmute" class="chip"></button></div><div class="cred">© 2026 Hanedan Games</div></div><div id="modal" class="hide"><div id="mc"></div></div></div><script>
+'use strict';
+(function () {
+const IL = (window.IL = window.IL || {});
+IL.W = 520; IL.H = 800;
+IL.COLORS = ['#C84B31', '#284B8C', '#2A7B5F', '#D49424', '#7A3E65'];
+IL.INK = '#2B2B2E'; IL.PAPER = '#F5EFE2'; IL.PAPER2 = '#FBF7EE';
+IL.TYPES = ['arch', 'diamond', 'tower', 'star', 'dome', 'harbor'];
+IL.mulberry = function (seed) {
+let a = seed >>> 0;
+return function () {
+a = (a + 0x6D2B79F5) | 0;
+let t = Math.imul(a ^ (a >>> 15), 1 | a);
+t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+};
+IL.riverY = x => 400 + 44 * Math.sin((x / 520) * Math.PI * 1.2 + 0.5) + 12 * Math.sin((x / 520) * Math.PI * 3.2 + 1.3);
+IL.riverHW = x => 27 + 5 * Math.sin(x / 110 + 0.7);
+IL.bankOf = (x, y) => (y > IL.riverY(x) ? 1 : 0);
+IL.inWater = (x, y) => Math.abs(y - IL.riverY(x)) < IL.riverHW(x);
+const hyp = Math.hypot;
+IL.dist = (a, b) => hyp(b.x - a.x, b.y - a.y);
+IL.route = function (a, b, v) {
+const dx = b.x - a.x, dy = b.y - a.y, d = Math.min(Math.abs(dx), Math.abs(dy));
+const sx = Math.sign(dx) * d, sy = Math.sign(dy) * d;
+const m = v ? { x: b.x - sx, y: b.y - sy } : { x: a.x + sx, y: a.y + sy };
+const pts = [{ x: a.x, y: a.y }];
+if (hyp(m.x - a.x, m.y - a.y) > 0.5 && hyp(b.x - m.x, b.y - m.y) > 0.5) pts.push(m);
+pts.push({ x: b.x, y: b.y });
+return pts;
+};
+IL.polyLen = function (pts) {
+let L = 0;
+for (let i = 1; i < pts.length; i++) L += hyp(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+return L;
+};
+IL.pointAt = function (pts, t) {
+const L = IL.polyLen(pts);
+let d = Math.max(0, Math.min(1, t)) * L;
+for (let i = 1; i < pts.length; i++) {
+const a = pts[i - 1], b = pts[i], l = hyp(b.x - a.x, b.y - a.y);
+if (d <= l || i === pts.length - 1) {
+const f = l ? Math.min(1, d / l) : 0;
+return { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f, ang: Math.atan2(b.y - a.y, b.x - a.x) };
+}
+d -= l;
+}
+return { x: pts[0].x, y: pts[0].y, ang: 0 };
+};
+IL.subPoly = function (pts, t0, t1) {
+const L = IL.polyLen(pts), d0 = t0 * L, d1 = t1 * L, out = [IL.pointAt(pts, t0)];
+let acc = 0;
+for (let i = 1; i < pts.length - 1; i++) {
+acc += IL.dist(pts[i - 1], pts[i]);
+if (acc > d0 && acc < d1) out.push(pts[i]);
+}
+out.push(IL.pointAt(pts, t1));
+return out;
+};
+IL.offsetPoly = function (pts, o) {
+if (!o) return pts.map(p => ({ x: p.x, y: p.y }));
+const n = pts.length, nr = [], out = [];
+for (let i = 0; i < n - 1; i++) {
+const dx = pts[i + 1].x - pts[i].x, dy = pts[i + 1].y - pts[i].y, l = hyp(dx, dy) || 1;
+nr.push({ x: -dy / l, y: dx / l });
+}
+for (let i = 0; i < n; i++) {
+const p = pts[i];
+if (i === 0) out.push({ x: p.x + nr[0].x * o, y: p.y + nr[0].y * o });
+else if (i === n - 1) out.push({ x: p.x + nr[n - 2].x * o, y: p.y + nr[n - 2].y * o });
+else {
+const a = nr[i - 1], b = nr[i];
+let mx = a.x + b.x, my = a.y + b.y; const ml = hyp(mx, my) || 1; mx /= ml; my /= ml;
+const k = o / Math.max(0.35, mx * a.x + my * a.y);
+out.push({ x: p.x + mx * k, y: p.y + my * k });
+}
+}
+return out;
+};
+IL.distToSeg = function (p, a, b) {
+const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
+let t = l2 ? ((p.x - a.x) * dx + (p.y - a.y) * dy) / l2 : 0;
+t = Math.max(0, Math.min(1, t));
+return hyp(p.x - (a.x + dx * t), p.y - (a.y + dy * t));
+};
+IL.distToPoly = function (p, pts) {
+let m = Infinity;
+for (let i = 1; i < pts.length; i++) m = Math.min(m, IL.distToSeg(p, pts[i - 1], pts[i]));
+return m;
+};
+IL.waterRuns = function (pts) {
+const N = 96, runs = [];
+let inside = false, start = 0;
+for (let i = 0; i <= N; i++) {
+const t = i / N, p = IL.pointAt(pts, t), w = IL.inWater(p.x, p.y);
+if (w && !inside) { inside = true; start = Math.max(0, t - 0.5 / N); }
+if (!w && inside) { inside = false; runs.push([start, t - 0.5 / N]); }
+}
+if (inside) runs.push([start, 1]);
+return runs;
+};
+IL.roundPath = function (ctx, pts, r) {
+if (!pts.length) return;
+ctx.moveTo(pts[0].x, pts[0].y);
+for (let i = 1; i < pts.length - 1; i++) {
+const a = pts[i - 1], b = pts[i], c = pts[i + 1];
+const rr = Math.min(r, IL.dist(a, b) / 2, IL.dist(b, c) / 2);
+if (rr < 0.5) ctx.lineTo(b.x, b.y); else ctx.arcTo(b.x, b.y, c.x, c.y, rr);
+}
+ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+};
+IL.BADGES = {
+arch: { d: 'M18 90V46A32 32 0 0 1 82 46V90H62V60A12 12 0 0 0 38 60V90Z', k: 1 },
+diamond: { d: 'M50 5L91 50L50 95L9 50Z', detail: 'M50 29L70 50L50 71L30 50Z', k: 1 },
+tower: { d: 'M50 4L60 24V36H68V60H76V94H24V60H32V36H40V24Z', k: 1 },
+star: { d: 'M50 3L61.5 38.5L97 50L61.5 61.5L50 97L38.5 61.5L3 50L38.5 38.5Z', k: 1.02 },
+dome: { d: 'M16 66A34 34 0 0 1 46 32.24V18L50 6L54 18V32.24A34 34 0 0 1 84 66H90V86H10V66Z', k: 1 },
+harbor: {
+d: 'M56 24V32H72V42H56V79.35A28 28 0 0 0 78 52L84 40L90 52A40 40 0 0 1 50 92A40 40 0 0 1 10 52L16 40L22 52A28 28 0 0 0 44 79.35V42H28V32H44V24A10.8 10.8 0 1 1 56 24Z M46 15A4 4 0 1 0 54 15A4 4 0 1 0 46 15Z',
+k: 1
+}
+};
+})();
+'use strict';
+(function () {
+const IL = window.IL;
+const WEEK = 50, CAP = 6, BASE_CAP = 6, SPEED = 70, MAXST = 20, DWELL = 0.16, CROWD_FILL = 24, CROWD_DRAIN = 10;
+Object.assign(IL, { WEEK, CAP, MAXST, CROWD_FILL });
+const FIXED = [
+{ x: 150, y: 300, type: 'arch' }, { x: 340, y: 300, type: 'diamond' }, { x: 250, y: 190, type: 'tower' },
+{ x: 300, y: 560, type: 'arch' }, { x: 130, y: 600, type: 'tower' }
+];
+class Game {
+constructor(o) {
+o = o || {};
+this.demo = !!o.demo;
+this.seed = o.seed != null ? o.seed >>> 0 : (Math.random() * 2147483647) | 0;
+this.rng = IL.mulberry(this.seed);
+this.stations = []; this.byId = {}; this.lines = [null, null, null, null, null]; this.trains = [];
+this.colorsUnlocked = 3; this.trainsOwned = 3; this.bridgesOwned = 2; this.capBonus = 0; this.express = 0;
+this.score = 0; this.t = 0; this.rt = 0; this.clockOn = false; this.weeksDone = 0; this.week = 1;
+this.spawnAcc = 0; this.nextStationT = Infinity; this.stage = 0; this.over = false; this.continued = false;
+this.deaths = 0; this.events = []; this.dist = {}; this.netDirty = true; this.undoSnap = null;
+this.segCache = {}; this.nid = 0; this.tid = 0; this.pending = null; this.focus = null; this.rush = false;
+this.fixedIdx = 0; this.blockedCount = 0; this._snap = null; this._mut = false;
+this.candidates = this.genCandidates();
+if (this.demo) this.setupDemo(); else this.setupTutorial();
+}
+ev(k, d) { this.events.push(Object.assign({ k }, d || {})); }
+genCandidates() {
+const r = IL.mulberry(this.seed ^ 0x9e3779b9), out = [];
+for (let k = 0; k < 5000 && out.length < 60; k++) {
+const x = 40 + r() * (IL.W - 80), y = 40 + r() * (IL.H - 80);
+if (Math.abs(y - IL.riverY(x)) < IL.riverHW(x) + 36) continue;
+let ok = true;
+for (const f of FIXED) if (Math.hypot(f.x - x, f.y - y) < 86) { ok = false; break; }
+if (ok) for (const c of out) if (Math.hypot(c.x - x, c.y - y) < 86) { ok = false; break; }
+if (ok) out.push({ x, y, bank: IL.bankOf(x, y), used: false });
+}
+return out;
+}
+addStation(x, y, type) {
+const s = { id: this.nid++, x, y, type, wait: [], crowd: 0, born: this.rt, bank: IL.bankOf(x, y) };
+this.stations.push(s); this.byId[s.id] = s; this.netDirty = true;
+this.ev('spawn', { s });
+return s;
+}
+setupTutorial() {
+const a = this.addFixed(), b = this.addFixed();
+a.wait.push({ type: 'diamond' }, { type: 'diamond' });
+b.wait.push({ type: 'arch' });
+}
+addFixed() { const f = FIXED[this.fixedIdx++]; return this.addStation(f.x, f.y, f.type); }
+setupDemo() {
+this.bridgesOwned = 9;
+for (let i = 0; i < FIXED.length; i++) this.addFixed();
+const c = this.candidates.slice().sort((p, q) => Math.hypot(p.x - 260, p.y - 400) - Math.hypot(q.x - 260, q.y - 400));
+const types = ['diamond', 'arch', 'star', 'tower', 'dome', 'arch', 'harbor', 'diamond', 'tower', 'arch'];
+for (let i = 0; i < 10 && i < c.length; i++) { c[i].used = true; this.addStation(c[i].x, c[i].y, types[i]); }
+const S = this.stations;
+const north = S.filter(s => s.bank === 0).sort((p, q) => p.x - q.x).map(s => s.id);
+const south = S.filter(s => s.bank === 1).sort((p, q) => p.x - q.x).map(s => s.id);
+this.lines[0] = { c: 0, stations: north, loop: false };
+this.lines[1] = { c: 1, stations: south, loop: false };
+const cross = [north[Math.floor(north.length / 2)], south[Math.floor(south.length / 2)]];
+const extra = S.filter(s => !cross.includes(s.id)).sort((p, q) => Math.hypot(p.x - 450, p.y - 560) - Math.hypot(q.x - 450, q.y - 560));
+if (extra.length) cross.push(extra[0].id);
+const ex2 = S.filter(s => !cross.includes(s.id)).sort((p, q) => Math.hypot(p.x - 120, p.y - 120) - Math.hypot(q.x - 120, q.y - 120));
+if (ex2.length) cross.unshift(ex2[0].id);
+this.lines[2] = { c: 2, stations: cross, loop: false };
+const used = new Set(cross);
+const far = S.filter(s => !used.has(s.id));
+const nFar = far.filter(s => s.bank === 0).sort((p, q) => q.x - p.x)[0], sFar = far.filter(s => s.bank === 1).sort((p, q) => p.x - q.x)[0];
+if (nFar && sFar) this.lines[3] = { c: 3, stations: [nFar.id, sFar.id], loop: false };
+this.trainsOwned = 4;
+for (const c of [0, 1]) if (this.lines[c].stations.length > 5) this.lines[c].stations = this.lines[c].stations.slice(0, 5);
+this.netDirty = true; this.assignTrains();
+for (const s of S) s.born = -1;
+}
+startClock() { this.clockOn = true; this.stage = 1; this.nextStationT = this.t + 2.5; this.ev('clock'); }
+pickType() {
+const has = t => this.stations.some(s => s.type === t);
+if (this.week >= 2 && !has('star')) return 'star';
+if (this.week >= 3 && !has('dome')) return 'dome';
+if (this.week >= 4 && !has('harbor')) return 'harbor';
+const sp = ['star', 'dome', 'harbor'].filter(has);
+if (sp.length && this.rng() < 0.05 * sp.length) return sp[(this.rng() * sp.length) | 0];
+const r = this.rng();
+return r < 0.46 ? 'arch' : r < 0.76 ? 'diamond' : 'tower';
+}
+spawnNext() {
+if (this.stations.length >= MAXST) { this.nextStationT = Infinity; return null; }
+let s = null;
+if (this.fixedIdx < FIXED.length) s = this.addFixed();
+else {
+const type = this.pickType(), S = this.stations;
+const cx = S.reduce((a, s) => a + s.x, 0) / S.length, cy = S.reduce((a, s) => a + s.y, 0) / S.length;
+const b0 = S.filter(s => s.bank === 0).length, b1 = S.length - b0;
+const want = b0 - b1 >= 2 ? 1 : b1 - b0 >= 2 ? 0 : -1;
+let best = null, bs = Infinity;
+for (const c of this.candidates) {
+if (c.used || (want >= 0 && c.bank !== want)) continue;
+if (S.some(s => Math.hypot(s.x - c.x, s.y - c.y) < 80)) continue;
+let sc = Math.hypot(c.x - cx, (c.y - cy) * 0.8) * (0.7 + 0.6 * this.rng());
+if (type === 'harbor') sc = Math.abs(c.y - IL.riverY(c.x)) * 3 + sc * 0.3;
+if (sc < bs) { bs = sc; best = c; }
+}
+if (!best) { this.nextStationT = Infinity; return null; }
+best.used = true; s = this.addStation(best.x, best.y, type);
+}
+const n = this.stations.length;
+this.nextStationT = this.t + (n < 5 ? 6 : Math.max(7.5, 13 - (this.week - 1) * 1.0) * (0.85 + 0.3 * this.rng()));
+return s;
+}
+spawnPax(st) {
+const S = this.stations;
+if (S.length < 2) return;
+const s = st || S[(this.rng() * S.length) | 0];
+if (this.demo && s.wait.length >= 4) return;
+const counts = {};
+for (const x of S) if (x.type !== s.type) counts[x.type] = (counts[x.type] || 0) + 1;
+const ts = Object.keys(counts);
+if (!ts.length) return;
+let tot = 0; for (const t of ts) tot += 1 + counts[t] * 0.5;
+let r = this.rng() * tot, T = ts[0];
+for (const t of ts) { r -= 1 + counts[t] * 0.5; if (r <= 0) { T = t; break; } }
+s.wait.push({ type: T });
+this.ev('pax', { s });
+}
+update(dt) {
+this.rt += dt;
+if (this.pending || this.over) return;
+if (this.netDirty) this.computeNet();
+if (this.demo) {
+this.spawnAcc += 0.7 * dt;
+while (this.spawnAcc >= 1) { this.spawnAcc -= 1; this.spawnPax(); }
+} else if (this.clockOn) {
+this.t += dt;
+const w = Math.floor(this.t / WEEK);
+if (w > this.weeksDone) { this.weeksDone = w; this.week = w + 1; this.offerUpgrade(); return; }
+const day = Math.floor((this.t % WEEK) / (WEEK / 7));
+const rush = day === 1 || day === 4;
+if (rush && !this.rush) this.ev('rush');
+this.rush = rush;
+if (this.t >= this.nextStationT) this.spawnNext();
+const n = this.stations.length;
+const rate = (0.05 + 0.066 * n) * (1 + 0.12 * (this.week - 1)) * (rush ? 1.75 : 1);
+this.spawnAcc += rate * dt;
+while (this.spawnAcc >= 1) { this.spawnAcc -= 1; this.spawnPax(); }
+}
+this.updateTrains(dt);
+if (this.clockOn && !this.demo) this.updateCrowd(dt);
+}
+get day() { return Math.floor((this.t % WEEK) / (WEEK / 7)); }
+get weekFrac() { return (this.t % WEEK) / WEEK; }
+updateCrowd(dt) {
+for (const s of this.stations) {
+if (s.wait.length > CAP) {
+if (s.crowd === 0) this.ev('warn', { s });
+s.crowd = Math.min(1, s.crowd + dt / CROWD_FILL);
+} else s.crowd = Math.max(0, s.crowd - dt / CROWD_DRAIN);
+if (s.crowd >= 1) { this.gameOver(s); return; }
+}
+}
+gameOver(s) { this.over = true; this.focus = s; this.deaths++; this.ev('gameover', { s }); }
+continueRun() {
+if (this.continued) return false;
+this.continued = true; this.over = false; this.focus = null;
+for (const s of this.stations) if (s.crowd > 0 || s.wait.length > CAP / 2) { s.wait.length = 0; s.crowd = 0; }
+this.ev('cleared');
+return true;
+}
+computeNet() {
+const adj = {};
+for (const s of this.stations) adj[s.id] = [];
+for (const L of this.lines) {
+if (!L || L.stations.length < 2) continue;
+this.forSegs(L, (a, b) => { adj[a].push(b); adj[b].push(a); });
+}
+this.dist = {};
+const types = new Set(this.stations.map(s => s.type));
+for (const T of types) {
+const d = {}, q = [];
+for (const s of this.stations) if (s.type === T) { d[s.id] = 0; q.push(s.id); }
+for (let h = 0; h < q.length; h++) {
+const u = q[h];
+for (const v of adj[u]) if (d[v] === undefined) { d[v] = d[u] + 1; q.push(v); }
+}
+this.dist[T] = d;
+}
+this.netDirty = false;
+}
+D(T, sid) { const d = this.dist[T]; return d && d[sid] !== undefined ? d[sid] : Infinity; }
+forSegs(L, fn) {
+const st = L.stations, n = st.length;
+for (let i = 0; i < n - 1; i++) fn(st[i], st[i + 1], i);
+if (L.loop && n > 2) fn(st[n - 1], st[0], n - 1);
+}
+seg(a, b) {
+const lo = Math.min(a, b), hi = Math.max(a, b), k = lo * 1000 + hi;
+let s = this.segCache[k];
+if (s) return s;
+const A = this.byId[lo], B = this.byId[hi];
+let best = null;
+for (const v of [0, 1]) {
+const pts = IL.route(A, B, v), runs = IL.waterRuns(pts);
+if (!best || runs.length < best.runs.length) best = { v, pts, runs };
+}
+s = { lo, hi, v: best.v, pts: best.pts, len: IL.polyLen(best.pts), runs: best.runs, cross: best.runs.length > 0 };
+this.segCache[k] = s;
+return s;
+}
+trainCap() { return BASE_CAP + this.capBonus; }
+ahead(L, i, dir) {
+const n = L.stations.length, r = [];
+if (L.loop && n > 2) for (let k = 1; k < n; k++) r.push((((i + dir * k) % n) + n) % n);
+else for (let k = i + dir; k >= 0 && k < n; k += dir) r.push(k);
+return r;
+}
+adjacent(L, a, b) {
+const n = L.stations.length;
+if (Math.abs(a - b) === 1) return true;
+return L.loop && n > 2 && ((a === 0 && b === n - 1) || (a === n - 1 && b === 0));
+}
+dirOf(L, a, b) {
+const n = L.stations.length;
+if (L.loop && n > 2) { if (a === n - 1 && b === 0) return 1; if (a === 0 && b === n - 1) return -1; }
+return b > a ? 1 : -1;
+}
+updateTrains(dt) {
+for (const tr of this.trains) {
+const L = this.lines[tr.c];
+if (!L) continue;
+const st = L.stations, n = st.length;
+if (n < 2) { tr.state = 'dwell'; tr.from = st[0]; tr.to = null; tr.p = 0; continue; }
+if (tr.state === 'move') {
+const ia = st.indexOf(tr.from), ib = st.indexOf(tr.to);
+if (ia < 0 || ib < 0 || !this.adjacent(L, ia, ib)) {
+const i = (tr.p < 0.5 && ia >= 0) || ib < 0 ? Math.max(0, ia) : ib;
+tr.from = st[i]; tr.to = null; tr.p = 0; tr.state = 'dwell'; tr.wait = 0.05;
+continue;
+}
+tr.dir = this.dirOf(L, ia, ib);
+const len = Math.max(1, this.seg(tr.from, tr.to).len);
+const done = tr.p * len, rem = len - done;
+const ease = Math.min(1, 0.28 + Math.min(done, rem) / 38);
+tr.p += (SPEED * (1 + 0.3 * this.express) * ease * dt) / len;
+if (tr.p >= 1) {
+tr.p = 0; tr.from = tr.to; tr.to = null; tr.state = 'dwell'; tr.wait = DWELL;
+}
+} else {
+let i = st.indexOf(tr.from);
+if (i < 0) { i = 0; tr.from = st[0]; }
+if (!L.loop) { if (i === 0) tr.dir = 1; else if (i === n - 1) tr.dir = -1; }
+tr.wait -= dt;
+if (tr.wait > 0) continue;
+if (this.dwellStep(tr, L, i)) { tr.wait = DWELL; continue; }
+const j = L.loop && n > 2 ? (((i + tr.dir) % n) + n) % n : i + tr.dir;
+tr.to = st[j]; tr.state = 'move'; tr.p = 0;
+}
+}
+}
+dwellStep(tr, L, i) {
+const s = this.byId[L.stations[i]], ahead = this.ahead(L, i, tr.dir), memo = {};
+const best = T => {
+if (memo[T] !== undefined) return memo[T];
+let m = Infinity;
+for (const k of ahead) { const d = this.D(T, L.stations[k]); if (d < m) m = d; }
+return (memo[T] = m);
+};
+for (let k = 0; k < tr.pax.length; k++) {
+if (tr.pax[k].type === s.type) { tr.pax.splice(k, 1); this.score++; this.ev('deliver', { s, c: tr.c }); return true; }
+}
+for (let k = 0; k < tr.pax.length; k++) {
+const p = tr.pax[k];
+if (!(best(p.type) < this.D(p.type, s.id))) { tr.pax.splice(k, 1); s.wait.push(p); this.ev('transfer', { s }); return true; }
+}
+if (tr.pax.length < this.trainCap()) {
+for (let k = 0; k < s.wait.length; k++) {
+const p = s.wait[k];
+if (best(p.type) < this.D(p.type, s.id)) { s.wait.splice(k, 1); tr.pax.push(p); this.ev('board', { s, c: tr.c }); return true; }
+}
+}
+return false;
+}
+freeColor(pref) {
+if (pref >= 0 && pref < this.colorsUnlocked && !this.lines[pref]) return pref;
+for (let c = 0; c < this.colorsUnlocked; c++) if (!this.lines[c]) return c;
+return -1;
+}
+crossCount(L) { let k = 0; this.forSegs(L, (a, b) => { if (this.seg(a, b).cross) k++; }); return k; }
+bridgesUsed() { let k = 0; for (const L of this.lines) if (L) k += this.crossCount(L); return k; }
+bridgesLeft() { return this.bridgesOwned - this.bridgesUsed(); }
+snapshot() { return this.lines.map(L => (L ? { c: L.c, stations: L.stations.slice(), loop: L.loop } : null)); }
+gestureStart() { this._snap = this.snapshot(); this._mut = false; }
+touch() {
+if (!this._mut) { this._mut = true; this.undoSnap = this._snap || this.snapshot(); }
+this.netDirty = true;
+}
+gestureEnd() {
+for (let c = 0; c < 5; c++) { const L = this.lines[c]; if (L && L.stations.length < 2) this.removeLine(c); }
+this._snap = null; this._mut = false; this.netDirty = true; this.assignTrains();
+}
+blocked(a, b) {
+const sg = this.seg(a, b), r = sg.runs[0] || [0.5, 0.5], p = IL.pointAt(sg.pts, (r[0] + r[1]) / 2);
+this.blockedCount++;
+this.ev('blocked', { x: p.x, y: p.y });
+}
+createLine(c, a, b) {
+if (c < 0 || this.lines[c] || a === b) return 'nocolor';
+if (this.seg(a, b).cross && this.bridgesLeft() < 1) { this.blocked(a, b); return 'nobridge'; }
+this.touch();
+this.lines[c] = { c, stations: [a, b], loop: false };
+this.ev('connect', { c, a, b });
+this.assignTrains();
+if (this.stage === 0) this.startClock();
+return 'ok';
+}
+endSid(L, end) { return end === 'head' ? L.stations[0] : L.stations[L.stations.length - 1]; }
+prevSid(L, end) { const st = L.stations, n = st.length; return n < 2 ? null : end === 'head' ? st[1] : st[n - 2]; }
+extend(c, end, sid) {
+const L = this.lines[c];
+if (!L || L.loop || L.stations.includes(sid)) return 'no';
+const e = this.endSid(L, end);
+if (this.seg(e, sid).cross && this.bridgesLeft() < 1) { this.blocked(e, sid); return 'nobridge'; }
+this.touch();
+if (end === 'head') L.stations.unshift(sid); else L.stations.push(sid);
+this.ev('connect', { c, a: e, b: sid });
+this.assignTrains();
+return 'ok';
+}
+retract(c, end) {
+const L = this.lines[c];
+if (!L || L.loop || L.stations.length < 1) return 'no';
+this.touch();
+const s = end === 'head' ? L.stations.shift() : L.stations.pop();
+this.ev('retract', { c, s });
+return 'ok';
+}
+closeLoop(c) {
+const L = this.lines[c];
+if (!L || L.loop || L.stations.length < 3) return 'no';
+const a = L.stations[L.stations.length - 1], b = L.stations[0];
+if (this.seg(a, b).cross && this.bridgesLeft() < 1) { this.blocked(a, b); return 'nobridge'; }
+this.touch(); L.loop = true;
+this.ev('connect', { c, a, b, loop: true });
+return 'ok';
+}
+insert(c, i, sid) {
+const L = this.lines[c];
+if (!L || L.stations.includes(sid)) return 'no';
+const st = L.stations, n = st.length, a = st[i], b = st[(i + 1) % n];
+if (a === undefined || b === undefined) return 'no';
+const delta = (this.seg(a, sid).cross ? 1 : 0) + (this.seg(sid, b).cross ? 1 : 0) - (this.seg(a, b).cross ? 1 : 0);
+if (delta > 0 && this.bridgesLeft() < delta) {
+this.blocked(this.seg(a, sid).cross ? a : b, sid);
+return 'nobridge';
+}
+this.touch();
+st.splice(i + 1, 0, sid);
+this.ev('connect', { c, a: sid, b: a });
+return 'ok';
+}
+deleteLine(c) {
+if (!this.lines[c]) return;
+this.undoSnap = this.snapshot();
+this.removeLine(c);
+this.ev('delete', { c });
+}
+removeLine(c) {
+for (let k = this.trains.length - 1; k >= 0; k--) {
+const tr = this.trains[k];
+if (tr.c !== c) continue;
+const s = this.byId[tr.from] || this.stations[0];
+if (s) s.wait.push(...tr.pax);
+this.trains.splice(k, 1);
+}
+this.lines[c] = null; this.netDirty = true;
+this.assignTrains();
+}
+undo() {
+const snap = this.undoSnap;
+if (!snap) return false;
+for (let c = 0; c < 5; c++) if (!snap[c] && this.lines[c]) this.removeLine(c);
+for (let c = 0; c < 5; c++) {
+if (snap[c]) {
+if (snap[c].stations.length < 2) { if (this.lines[c]) this.removeLine(c); continue; }
+this.lines[c] = { c, stations: snap[c].stations.slice(), loop: snap[c].loop };
+}
+}
+this.undoSnap = null; this.netDirty = true; this.assignTrains();
+this.ev('undo');
+return true;
+}
+assignTrains() {
+let free = this.trainsOwned - this.trains.length;
+for (let c = 0; c < 5 && free > 0; c++) {
+const L = this.lines[c];
+if (L && L.stations.length >= 2 && !this.trains.some(t => t.c === c)) { this.addTrain(c); free--; }
+}
+}
+addTrain(c) {
+const L = this.lines[c];
+const tr = { id: this.tid++, c, from: L.stations[0], to: null, p: 0, dir: 1, state: 'dwell', wait: 0.35, pax: [] };
+this.trains.push(tr);
+this.ev('train', { c, tr });
+return tr;
+}
+offerUpgrade() {
+const o = [];
+if (this.colorsUnlocked < 5) o.push('line');
+if (this.trainsOwned < 9) o.push('train');
+if (this.express < 2) o.push('express');
+o.push('bridge');
+for (let i = o.length - 1; i > 0; i--) { const j = (this.rng() * (i + 1)) | 0; [o[i], o[j]] = [o[j], o[i]]; }
+this.pending = o.slice(0, 2);
+this.ev('upgrade', { opts: this.pending });
+}
+applyUpgrade(k) {
+if (!this.pending || !this.pending.includes(k)) return false;
+if (k === 'line') this.colorsUnlocked = Math.min(5, this.colorsUnlocked + 1);
+else if (k === 'express') this.express = Math.min(2, this.express + 1);
+else if (k === 'bridge') this.bridgesOwned += 2;
+else if (k === 'train') {
+this.trainsOwned++; this.capBonus = Math.min(3, this.capBonus + 1);
+let best = -1, bl = -1;
+for (let c = 0; c < 5; c++) {
+const L = this.lines[c];
+if (!L || L.stations.length < 2) continue;
+const load = L.stations.reduce((a, s) => a + this.byId[s].wait.length, 0) / (this.trains.filter(t => t.c === c).length + 1) + 0.01;
+if (load > bl) { bl = load; best = c; }
+}
+if (best >= 0) this.addTrain(best); else this.assignTrains();
+}
+this.pending = null;
+this.ev('upgraded', { k });
+return true;
+}
+}
+IL.Game = Game;
+})();
+'use strict';
+(function () {
+const IL = window.IL;
+const PENTA = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25, 783.99, 880.0, 1046.5];
+class Sound {
+constructor() { this.ctx = null; this.muted = false; this.step = 4; this.lastNote = 0; }
+unlock() {
+try {
+if (!this.ctx) {
+const AC = window.AudioContext || window.webkitAudioContext;
+if (!AC) return;
+const c = (this.ctx = new AC());
+this.master = c.createGain(); this.master.gain.value = this.muted ? 0 : 0.6;
+const comp = c.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 3;
+this.master.connect(comp); comp.connect(c.destination);
+this.send = c.createGain(); this.send.gain.value = 0.22;
+const dl = c.createDelay(1); dl.delayTime.value = 0.21;
+const fb = c.createGain(); fb.gain.value = 0.28;
+const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
+this.send.connect(dl); dl.connect(lp); lp.connect(fb); fb.connect(dl); lp.connect(this.master);
+const len = c.sampleRate;
+this.noise = c.createBuffer(1, len, c.sampleRate);
+const d = this.noise.getChannelData(0);
+for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+}
+if (this.ctx.state === 'suspended') this.ctx.resume();
+} catch (e) { /* audio unavailable */ }
+}
+setMuted(m) {
+this.muted = m;
+if (this.ctx) this.master.gain.setTargetAtTime(m ? 0 : 0.6, this.ctx.currentTime, 0.03);
+}
+ok() { return this.ctx && !this.muted && this.ctx.state === 'running'; }
+env(g, t, a, peak, dec) {
+g.gain.setValueAtTime(0.0001, t);
+g.gain.exponentialRampToValueAtTime(peak, t + a);
+g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec);
+}
+osc(type, f, t, a, peak, dec, wet, f2) {
+const c = this.ctx, o = c.createOscillator(), g = c.createGain();
+o.type = type; o.frequency.setValueAtTime(f, t);
+if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + a + dec);
+this.env(g, t, a, peak, dec);
+o.connect(g); g.connect(this.master);
+if (wet) g.connect(this.send);
+o.start(t); o.stop(t + a + dec + 0.05);
+}
+marimba(f, t, v) {
+v = v || 1;
+this.osc('sine', f, t, 0.004, 0.22 * v, 0.55, true);
+this.osc('sine', f * 4, t, 0.002, 0.05 * v, 0.07, false);
+this.osc('triangle', f * 2, t, 0.003, 0.03 * v, 0.18, true);
+}
+bell(f, t, v) {
+v = v || 1;
+this.osc('sine', f, t, 0.005, 0.12 * v, 1.2, true);
+this.osc('sine', f * 2.76, t, 0.003, 0.04 * v, 0.5, true);
+this.osc('sine', f * 5.4, t, 0.002, 0.015 * v, 0.25, true);
+}
+noiseBurst(t, dur, f0, f1, q, peak) {
+const c = this.ctx, s = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
+s.buffer = this.noise; bp.type = 'bandpass'; bp.Q.value = q;
+bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + dur);
+this.env(g, t, dur * 0.25, peak, dur * 0.75);
+s.connect(bp); bp.connect(g); g.connect(this.master);
+s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.05);
+}
+deliver(c) {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+if (t - this.lastNote < 0.06) return;
+this.lastNote = t;
+this.step += [-2, -1, 1, 1, 2, 3][(Math.random() * 6) | 0];
+if (this.step < 2) this.step = 3; if (this.step > PENTA.length - 2) this.step = PENTA.length - 4;
+const f = PENTA[this.step];
+this.marimba(f, t, 1);
+if (Math.random() < 0.3) this.marimba(PENTA[Math.max(0, this.step - 2)], t + 0.09, 0.45);
+}
+ink() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+this.noiseBurst(t, 0.26, 2600, 900, 1.4, 0.16);
+this.osc('sine', 520, t + 0.02, 0.01, 0.07, 0.25, true, 390);
+}
+thud() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+this.osc('sine', 150, t, 0.004, 0.32, 0.2, false, 52);
+this.noiseBurst(t, 0.1, 500, 200, 0.8, 0.05);
+}
+tick() { if (this.ok()) this.osc('sine', 1320, this.ctx.currentTime, 0.002, 0.04, 0.05, false); }
+spawn() { if (this.ok()) this.bell(1046.5, this.ctx.currentTime, 0.35); }
+chime() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+this.bell(783.99, t, 0.8); this.bell(1174.66, t + 0.16, 0.6);
+}
+heart(k) {
+if (!this.ok()) return;
+const t = this.ctx.currentTime, v = 0.6 + 0.6 * k;
+this.osc('sine', 78, t, 0.008, 0.28 * v, 0.16, false, 44);
+this.osc('sine', 70, t + 0.19, 0.008, 0.2 * v, 0.16, false, 40);
+}
+chord() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+[523.25, 659.25, 783.99, 1046.5].forEach((f, i) => this.bell(f, t + i * 0.08, 0.8));
+this.osc('sine', 261.63, t, 0.05, 0.08, 1.4, true);
+}
+buzz() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+this.osc('triangle', 196, t, 0.005, 0.12, 0.12, false, 150);
+this.osc('triangle', 185, t + 0.11, 0.005, 0.1, 0.14, false, 140);
+}
+over() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+[392, 329.63, 261.63, 196].forEach((f, i) => this.marimba(f, t + i * 0.22, 0.9));
+}
+reward() {
+if (!this.ok()) return;
+const t = this.ctx.currentTime;
+[659.25, 783.99, 987.77, 1318.5].forEach((f, i) => this.bell(f, t + i * 0.06, 0.6));
+}
+}
+IL.Sound = Sound;
+})();
+'use strict';
+(function () {
+const IL = window.IL;
+IL.STR = {
+en: {
+play: 'Play', paused: 'Paused', resume: 'Resume', restart: 'Restart', week: 'Week', wk: 'W', choose: 'Choose one',
+up_line: 'New Ink Line', up_line_d: 'One more line to draw',
+up_train: 'Train + Carriage', up_train_d: '+1 train, +1 seat on every train',
+up_express: 'Express', up_express_d: 'All trains run 30% faster',
+up_bridge: '+2 Bridges', up_bridge_d: 'Cross the river twice more',
+over: 'Station overcrowded', pax: 'passengers delivered',
+cont: 'Continue (Rewarded - Test)', again: 'Play Again',
+ad: 'Simulated Rewarded Ad · Test', ad_d: 'Reward: crowded stations cleared',
+sound: 'Sound', undo: 'Undo', del: 'Delete line', speed: 'Speed', pause: 'Pause', bridges: 'Bridges / tunnels', score: 'Passengers'
+},
+tr: {
+play: 'Oyna', paused: 'Duraklatıldı', resume: 'Devam', restart: 'Yeniden başla', week: 'Hafta', wk: 'H', choose: 'Birini seç',
+up_line: 'Yeni Mürekkep Hattı', up_line_d: 'Çizecek bir hat daha',
+up_train: 'Tren + Vagon', up_train_d: '+1 tren, her trene +1 koltuk',
+up_express: 'Ekspres', up_express_d: 'Tüm trenler %30 daha hızlı',
+up_bridge: '+2 Köprü/Tünel', up_bridge_d: 'Nehri iki kez daha geç',
+over: 'Durak taştı', pax: 'yolcu taşındı',
+cont: 'Devam Et (Ödüllü - Test)', again: 'Tekrar Oyna',
+ad: 'Simüle Ödüllü Reklam · Test', ad_d: 'Ödül: kalabalık duraklar boşaltıldı',
+sound: 'Ses', undo: 'Geri al', del: 'Hattı sil', speed: 'Hız', pause: 'Duraklat', bridges: 'Köprü / tünel', score: 'Yolcu'
+}
+};
+IL.lang = 'en';
+try {
+const saved = localStorage.getItem('inklines_lang');
+IL.lang = saved === 'tr' || saved === 'en' ? saved : /^tr/i.test(navigator.language || '') ? 'tr' : 'en';
+} catch (e) { IL.lang = /^tr/i.test(navigator.language || '') ? 'tr' : 'en'; }
+IL.t = k => (IL.STR[IL.lang] && IL.STR[IL.lang][k]) || IL.STR.en[k] || k;
+})();
+'use strict';
+(function () {
+const IL = window.IL, TAU = Math.PI * 2, INK = IL.INK;
+const easeOutBack = t => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); };
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+IL.rgba = rgba;
+class Camera {
+constructor() { this.cx = IL.W / 2; this.cy = IL.H / 2; this.s = 0.5; this.land = false; this.rect = { x: 0, y: 0, w: 100, h: 100 }; this.ready = false; }
+toScreen(x, y) {
+const vx = this.land ? y : x, vy = this.land ? x : y;
+return { x: (vx - this.cx) * this.s + this.rect.x + this.rect.w / 2, y: (vy - this.cy) * this.s + this.rect.y + this.rect.h / 2 };
+}
+toWorld(sx, sy) {
+const vx = (sx - this.rect.x - this.rect.w / 2) / this.s + this.cx, vy = (sy - this.rect.y - this.rect.h / 2) / this.s + this.cy;
+return this.land ? { x: vy, y: vx } : { x: vx, y: vy };
+}
+target(pts, pad, minExt, zoom) {
+let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+for (const p of pts) {
+const vx = this.land ? p.y : p.x, vy = this.land ? p.x : p.y;
+x0 = Math.min(x0, vx); y0 = Math.min(y0, vy); x1 = Math.max(x1, vx); y1 = Math.max(y1, vy);
+}
+if (x0 > x1) { x0 = 0; y0 = 0; x1 = this.land ? IL.H : IL.W; y1 = this.land ? IL.W : IL.H; }
+x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
+const w = Math.max(x1 - x0, minExt), h = Math.max(y1 - y0, minExt);
+return { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, s: Math.min(this.rect.w / w, this.rect.h / h) * (zoom || 1) };
+}
+step(t, dt, snap) {
+if (snap || !this.ready) { this.cx = t.cx; this.cy = t.cy; this.s = t.s; this.ready = true; return; }
+const k = 1 - Math.exp(-dt * 2.2);
+this.cx += (t.cx - this.cx) * k; this.cy += (t.cy - this.cy) * k; this.s *= Math.pow(t.s / this.s, k);
+}
+}
+class Renderer {
+constructor(cv) {
+this.cv = cv; this.ctx = cv.getContext('2d');
+this.fx = []; this.paths = {};
+for (const t of IL.TYPES) {
+this.paths[t] = new Path2D(IL.BADGES[t].d);
+if (IL.BADGES[t].detail) this.paths[t + '_d'] = new Path2D(IL.BADGES[t].detail);
+}
+this.handles = []; this.segs = []; this.sp = {}; this.lineGeo = [];
+this.makeGrain(); this.makeDecor(); this.resize();
+}
+resize() {
+const dpr = Math.min(window.devicePixelRatio || 1, 3);
+const w = this.cv.clientWidth || innerWidth, h = this.cv.clientHeight || innerHeight;
+this.vw = w; this.vh = h; this.dpr = dpr;
+this.cv.width = Math.round(w * dpr); this.cv.height = Math.round(h * dpr);
+const m = Math.min(w, h);
+this.lw = Math.max(5, Math.min(8, m / 62));
+this.ss = Math.max(21, Math.min(30, m / 15));
+this.ps = Math.max(8.5, this.ss * 0.4);
+this.vig = null;
+}
+makeGrain() {
+const c = document.createElement('canvas'); c.width = c.height = 192;
+const x = c.getContext('2d'), img = x.createImageData(192, 192), d = img.data;
+const r = IL.mulberry(99);
+for (let i = 0; i < d.length; i += 4) {
+const v = r();
+d[i] = 110; d[i + 1] = 86; d[i + 2] = 52; d[i + 3] = v < 0.5 ? (v * 22) | 0 : v > 0.985 ? 34 : 0;
+}
+x.putImageData(img, 0, 0);
+x.strokeStyle = 'rgba(120,96,60,0.05)'; x.lineWidth = 0.6;
+for (let i = 0; i < 26; i++) {
+const sx = r() * 192, sy = r() * 192, a = r() * TAU, l = 6 + r() * 16;
+x.beginPath(); x.moveTo(sx, sy); x.quadraticCurveTo(sx + Math.cos(a) * l * 0.5 + 3, sy + Math.sin(a) * l * 0.5, sx + Math.cos(a) * l, sy + Math.sin(a) * l); x.stroke();
+}
+this.grain = this.ctx.createPattern(c, 'repeat');
+}
+makeDecor() {
+const r = IL.mulberry(1234), blocks = [];
+for (let gx = -160; gx < IL.W + 160; gx += 40) for (let gy = -160; gy < IL.H + 160; gy += 40) {
+if (r() > 0.34) continue;
+const w = (r() < 0.3 ? 80 : 40) - 12, h = (r() < 0.2 ? 80 : 40) - 12, x = gx + 6, y = gy + 6;
+let wet = false;
+for (const [px, py] of [[x, y], [x + w, y], [x, y + h], [x + w, y + h], [x + w / 2, y + h / 2]]) if (Math.abs(py - IL.riverY(px)) < IL.riverHW(px) + 10) wet = true;
+if (!wet) blocks.push({ x, y, w, h, hatch: r() < 0.22 });
+}
+this.blocks = blocks;
+this.ripples = [];
+for (let i = 0; i < 90; i++) this.ripples.push({ x: -260 + r() * (IL.W + 520), f: (r() * 2 - 1) * 0.66, l: 7 + r() * 12, ph: r() * TAU });
+const riv = [];
+for (let x = -420; x <= IL.W + 420; x += 8) riv.push({ x, y: IL.riverY(x), hw: IL.riverHW(x) });
+this.riv = riv;
+}
+addFx(f) { f.t0 = performance.now() / 1000; this.fx.push(f); }
+geometry(g, cam) {
+const sp = {};
+for (const s of g.stations) sp[s.id] = cam.toScreen(s.x, s.y);
+this.sp = sp;
+const use = {}, lw = this.lw;
+for (const L of g.lines) if (L && L.stations.length >= 2) g.forSegs(L, (a, b) => { const k = Math.min(a, b) * 1000 + Math.max(a, b); (use[k] || (use[k] = [])).push(L.c); });
+const geo = [], segs = [], handles = [];
+for (const L of g.lines) {
+if (!L) continue;
+const st = L.stations, n = st.length, lg = { c: L.c, segs: [], map: {}, path: [] };
+geo[L.c] = lg;
+if (n < 2) continue;
+g.forSegs(L, (a, b, idx) => {
+const sg = g.seg(a, b), k = sg.lo * 1000 + sg.hi, u = use[k], ki = u.indexOf(L.c);
+const off = (ki - (u.length - 1) / 2) * (lw + 1.6);
+let pts = IL.offsetPoly(IL.route(sp[sg.lo], sp[sg.hi], sg.v), off);
+const fwd = a === sg.lo;
+const ptsAB = fwd ? pts : pts.slice().reverse();
+const e = { a, b, idx, pts: ptsAB, sg, fwdT: fwd };
+lg.segs.push(e); lg.map[a + '>' + b] = ptsAB; lg.map[b + '>' + a] = ptsAB.slice().reverse();
+segs.push({ c: L.c, idx, pts: ptsAB });
+for (let i = lg.path.length ? 1 : 0; i < ptsAB.length; i++) lg.path.push(ptsAB[i]);
+});
+if (!L.loop) {
+const hl = this.ss * 1.15;
+const f = lg.segs[0].pts, l = lg.segs[lg.segs.length - 1].pts;
+for (const [end, p0, p1] of [['head', f[0], f[1]], ['tail', l[l.length - 1], l[l.length - 2]]]) {
+const dx = p0.x - p1.x, dy = p0.y - p1.y, d = Math.hypot(dx, dy) || 1;
+handles.push({ c: L.c, end, bx: p0.x, by: p0.y, ux: dx / d, uy: dy / d, ux0: dx / d, uy0: dy / d, x: p0.x + (dx / d) * hl, y: p0.y + (dy / d) * hl });
+}
+}
+}
+for (let i = 0; i < handles.length; i++) {
+let tries = 0;
+const bad = h => handles.some((o, j) => j < i && Math.hypot(o.x - h.x, o.y - h.y) < this.ss * 0.9) ||
+g.stations.some(s => { const q = sp[s.id]; return Math.hypot(q.x - h.bx, q.y - h.by) > this.ss * 0.7 && Math.hypot(q.x - h.x, q.y - h.y) < this.ss * 1.25; });
+while (tries++ < 6 && bad(handles[i])) {
+const h = handles[i], a = (tries % 2 ? 1 : -1) * Math.ceil(tries / 2) * 0.62, ca = Math.cos(a), sa = Math.sin(a);
+const ux = h.ux0 * ca - h.uy0 * sa, uy = h.ux0 * sa + h.uy0 * ca, hl = this.ss * 1.15;
+h.ux = ux; h.uy = uy; h.x = h.bx + ux * hl; h.y = h.by + uy * hl;
+}
+if (bad(handles[i])) { const h = handles[i]; h.ux = h.ux0; h.uy = h.uy0; h.x = h.bx + h.ux * this.ss * 1.15; h.y = h.by + h.uy * this.ss * 1.15; }
+}
+this.lineGeo = geo; this.segs = segs; this.handles = handles;
+}
+draw(g, cam, st) {
+const ctx = this.ctx, now = st.now;
+ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+this.geometry(g, cam);
+this.drawPaper(cam, now);
+this.drawRiver(cam, now);
+this.drawCompass(st);
+const sel = st.sel;
+for (const lg of this.lineGeo) {
+if (!lg || !lg.segs.length) continue;
+const dim = sel >= 0 && sel !== lg.c && g.lines[sel];
+ctx.globalAlpha = dim ? 0.32 : 1;
+this.drawBridges(lg);
+this.drawLine(lg, g.lines[lg.c], sel === lg.c, now);
+ctx.globalAlpha = 1;
+}
+for (const h of this.handles) {
+const dim = sel >= 0 && sel !== h.c && g.lines[sel];
+ctx.globalAlpha = dim ? 0.32 : 1;
+this.drawHandle(h);
+ctx.globalAlpha = 1;
+}
+if (st.drag) this.drawPreview(g, cam, st.drag);
+for (const tr of g.trains) this.drawTrain(g, tr, st.dt);
+for (const s of g.stations) this.drawStation(g, s, now);
+for (const s of g.stations) this.drawWaiting(s);
+this.drawFx(cam, now);
+if (st.tutorial) this.drawTutorial(g, g.rt);
+if (g.over && g.focus) this.drawFocus(g.focus, now);
+}
+drawPaper(cam, now) {
+const ctx = this.ctx, W = this.vw, H = this.vh;
+ctx.fillStyle = IL.PAPER; ctx.fillRect(0, 0, W, H);
+ctx.fillStyle = this.grain; ctx.fillRect(0, 0, W, H);
+const a = cam.toWorld(0, 0), b = cam.toWorld(W, H);
+const x0 = Math.min(a.x, b.x), x1 = Math.max(a.x, b.x), y0 = Math.min(a.y, b.y), y1 = Math.max(a.y, b.y);
+const grid = (step, style, lw) => {
+ctx.strokeStyle = style; ctx.lineWidth = lw; ctx.beginPath();
+for (let x = Math.floor(x0 / step) * step; x <= x1; x += step) {
+const p = cam.toScreen(x, y0), q = cam.toScreen(x, y1);
+const rx = cam.land ? 0 : Math.round(p.x) + 0.5, ry = cam.land ? Math.round(p.y) + 0.5 : 0;
+if (cam.land) { ctx.moveTo(0, ry); ctx.lineTo(W, ry); } else { ctx.moveTo(rx, 0); ctx.lineTo(rx, H); }
+void q;
+}
+for (let y = Math.floor(y0 / step) * step; y <= y1; y += step) {
+const p = cam.toScreen(x0, y);
+if (cam.land) { const rx = Math.round(p.x) + 0.5; ctx.moveTo(rx, 0); ctx.lineTo(rx, H); } else { const ry = Math.round(p.y) + 0.5; ctx.moveTo(0, ry); ctx.lineTo(W, ry); }
+}
+ctx.stroke();
+};
+grid(20, 'rgba(70,90,110,0.045)', 1);
+grid(100, 'rgba(70,90,110,0.085)', 1);
+ctx.lineWidth = 0.8; ctx.strokeStyle = 'rgba(43,43,46,0.075)';
+ctx.beginPath();
+const hatch = [];
+for (const bk of this.blocks) {
+const p = cam.toScreen(bk.x, bk.y), q = cam.toScreen(bk.x + bk.w, bk.y + bk.h);
+const rx = Math.min(p.x, q.x), ry = Math.min(p.y, q.y), rw = Math.abs(q.x - p.x), rh = Math.abs(q.y - p.y);
+if (rx > W || ry > H || rx + rw < 0 || ry + rh < 0) continue;
+ctx.rect(Math.round(rx) + 0.5, Math.round(ry) + 0.5, Math.round(rw), Math.round(rh));
+if (bk.hatch) hatch.push([rx, ry, rw, rh]);
+}
+ctx.stroke();
+ctx.strokeStyle = 'rgba(43,43,46,0.05)'; ctx.lineWidth = 0.7;
+for (const [rx, ry, rw, rh] of hatch) {
+ctx.save(); ctx.beginPath(); ctx.rect(rx, ry, rw, rh); ctx.clip(); ctx.beginPath();
+for (let k = -rh; k < rw; k += 5) { ctx.moveTo(rx + k, ry + rh); ctx.lineTo(rx + k + rh, ry); }
+ctx.stroke(); ctx.restore();
+}
+if (!this.vig) {
+const gr = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.hypot(W, H) * 0.62);
+gr.addColorStop(0, 'rgba(120,90,40,0)'); gr.addColorStop(1, 'rgba(120,90,40,0.10)');
+this.vig = gr;
+}
+ctx.fillStyle = this.vig; ctx.fillRect(0, 0, W, H);
+}
+drawRiver(cam, now) {
+const ctx = this.ctx, R = this.riv;
+const up = R.map(r => cam.toScreen(r.x, r.y - r.hw)), dn = R.map(r => cam.toScreen(r.x, r.y + r.hw));
+ctx.beginPath();
+up.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+for (let i = dn.length - 1; i >= 0; i--) ctx.lineTo(dn[i].x, dn[i].y);
+ctx.closePath();
+ctx.fillStyle = '#8E9CA3'; ctx.fill();
+ctx.save(); ctx.clip();
+ctx.lineWidth = 1;
+for (const [f, a] of [[0.78, 0.22], [0.52, 0.16]]) {
+ctx.strokeStyle = `rgba(245,239,226,${a})`;
+for (const sgn of [-1, 1]) {
+ctx.beginPath();
+R.forEach((r, i) => { const p = cam.toScreen(r.x, r.y + sgn * r.hw * f); i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); });
+ctx.stroke();
+}
+}
+ctx.strokeStyle = 'rgba(245,239,226,0.42)'; ctx.lineWidth = 1.1; ctx.lineCap = 'round';
+ctx.beginPath();
+for (const rp of this.ripples) {
+const drift = ((now * 6 + rp.ph * 10) % 40) - 20;
+const x = rp.x + drift, y = IL.riverY(x) + rp.f * IL.riverHW(x);
+const a = cam.toScreen(x, y), b = cam.toScreen(x + rp.l, IL.riverY(x + rp.l) + rp.f * IL.riverHW(x + rp.l));
+const k = 0.5 + 0.5 * Math.sin(now * 1.3 + rp.ph);
+if (k < 0.25) continue;
+ctx.moveTo(a.x, a.y); ctx.lineTo(a.x + (b.x - a.x) * k, a.y + (b.y - a.y) * k);
+}
+ctx.stroke();
+ctx.restore();
+ctx.lineJoin = 'round';
+for (const arr of [up, dn]) {
+ctx.strokeStyle = 'rgba(43,48,54,0.9)'; ctx.lineWidth = 1.5;
+ctx.beginPath(); arr.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y))); ctx.stroke();
+}
+ctx.strokeStyle = 'rgba(43,48,54,0.18)'; ctx.lineWidth = 0.8; ctx.setLineDash([3, 4]);
+for (const sgn of [-1, 1]) {
+ctx.beginPath();
+R.forEach((r, i) => { const p = cam.toScreen(r.x, r.y + sgn * (r.hw + 7)); i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); });
+ctx.stroke();
+}
+ctx.setLineDash([]);
+}
+drawCompass(st) {
+const ctx = this.ctx, r = 22, x = st.rect.x + r + 6, y = st.rect.y + st.rect.h - r - 6;
+ctx.save(); ctx.translate(x, y); ctx.globalAlpha = 0.16; ctx.strokeStyle = INK; ctx.fillStyle = INK; ctx.lineWidth = 1;
+ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.stroke();
+ctx.beginPath(); ctx.arc(0, 0, r * 0.72, 0, TAU); ctx.stroke();
+for (let i = 0; i < 8; i++) {
+const a = (i * Math.PI) / 4 - Math.PI / 2, l = i % 2 ? r * 0.55 : r * 1.0, w = i % 2 ? 2.2 : 3.6;
+ctx.beginPath(); ctx.moveTo(Math.cos(a) * l, Math.sin(a) * l);
+ctx.lineTo(Math.cos(a + Math.PI / 2) * w, Math.sin(a + Math.PI / 2) * w);
+ctx.lineTo(0, 0); ctx.closePath();
+i === 0 ? ctx.fill() : ctx.stroke();
+}
+ctx.font = '600 8px Georgia,serif'; ctx.textAlign = 'center'; ctx.fillText('N', 0, -r - 3);
+ctx.restore();
+}
+drawBridges(lg) {
+const ctx = this.ctx, lw = this.lw;
+for (const e of lg.segs) {
+if (!e.sg.cross) continue;
+for (const run of e.sg.runs) {
+let t0 = run[0], t1 = run[1];
+if (!e.fwdT) { const a = 1 - t1; t1 = 1 - t0; t0 = a; }
+const pad = 0.035;
+const sub = IL.subPoly(e.pts, Math.max(0, t0 - pad), Math.min(1, t1 + pad));
+ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
+ctx.strokeStyle = IL.PAPER2; ctx.lineWidth = lw + 9;
+ctx.beginPath(); IL.roundPath(ctx, sub, 10); ctx.stroke();
+ctx.strokeStyle = INK; ctx.lineWidth = 1.3;
+for (const o of [-(lw / 2 + 4), lw / 2 + 4]) { ctx.beginPath(); IL.roundPath(ctx, IL.offsetPoly(sub, o), 10); ctx.stroke(); }
+const L = IL.polyLen(sub), n = Math.max(2, Math.floor(L / 6));
+ctx.lineWidth = 0.9; ctx.beginPath();
+for (let i = 0; i <= n; i++) {
+const p = IL.pointAt(sub, i / n), nx = -Math.sin(p.ang), ny = Math.cos(p.ang), o = (i % 2 ? 1 : -1) * (lw / 2 + 4);
+i ? ctx.lineTo(p.x + nx * o, p.y + ny * o) : ctx.moveTo(p.x + nx * o, p.y + ny * o);
+}
+ctx.stroke();
+ctx.lineWidth = 2.6; ctx.lineCap = 'round';
+for (const t of [0, 1]) {
+const p = IL.pointAt(sub, t), nx = -Math.sin(p.ang), ny = Math.cos(p.ang), o = lw / 2 + 6.5;
+ctx.beginPath(); ctx.moveTo(p.x - nx * o, p.y - ny * o); ctx.lineTo(p.x + nx * o, p.y + ny * o); ctx.stroke();
+}
+}
+}
+}
+drawLine(lg, L, selected, now) {
+const ctx = this.ctx, col = IL.COLORS[lg.c];
+const pts = lg.path.slice();
+if (L.loop && pts.length) pts.push(pts[0], pts[1] || pts[0]);
+ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+if (selected) {
+ctx.strokeStyle = rgba(col, 0.22 + 0.08 * Math.sin(now * 5)); ctx.lineWidth = this.lw + 8;
+ctx.beginPath(); IL.roundPath(ctx, pts, this.ss * 0.75); ctx.stroke();
+}
+ctx.strokeStyle = col; ctx.lineWidth = this.lw;
+ctx.beginPath(); IL.roundPath(ctx, pts, this.ss * 0.75); ctx.stroke();
+ctx.strokeStyle = 'rgba(255,255,255,0.13)'; ctx.lineWidth = Math.max(1, this.lw * 0.22);
+ctx.beginPath(); IL.roundPath(ctx, IL.offsetPoly(pts.length > 1 ? pts : pts, -this.lw * 0.18), this.ss * 0.75); ctx.stroke();
+}
+drawHandle(h) {
+const ctx = this.ctx, col = IL.COLORS[h.c], w = this.lw * 2.5;
+ctx.strokeStyle = col; ctx.lineCap = 'round'; ctx.lineWidth = this.lw;
+ctx.beginPath(); ctx.moveTo(h.bx, h.by); ctx.lineTo(h.x, h.y); ctx.stroke();
+ctx.lineCap = 'butt'; ctx.lineWidth = this.lw * 0.95;
+ctx.beginPath(); ctx.moveTo(h.x - h.uy * w, h.y + h.ux * w); ctx.lineTo(h.x + h.uy * w, h.y - h.ux * w); ctx.stroke();
+}
+drawPreview(g, cam, d) {
+const ctx = this.ctx, sp = this.sp;
+const col = IL.COLORS[d.c >= 0 ? d.c : 0];
+ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+if (d.kind === 'insert') {
+const L = g.lines[d.c]; if (!L) return;
+const a = sp[L.stations[d.i]], b = sp[L.stations[(d.i + 1) % L.stations.length]];
+const tgt = d.snap != null ? sp[d.snap] : d.p;
+ctx.strokeStyle = rgba(col, 0.75); ctx.lineWidth = this.lw; ctx.setLineDash([this.lw * 1.6, this.lw * 1.3]);
+for (const [p, q] of [[a, tgt], [tgt, b]]) { ctx.beginPath(); IL.roundPath(ctx, IL.route(p, q, 0), 12); ctx.stroke(); }
+ctx.setLineDash([]);
+return;
+}
+const from = sp[d.cur != null ? d.cur : d.a];
+if (!from) return;
+const tgt = d.snap != null && d.snap !== d.cur ? sp[d.snap] : d.p;
+const bad = d.badSnap != null && d.badSnap === d.snap;
+ctx.strokeStyle = bad ? 'rgba(43,43,46,0.45)' : rgba(col, 0.78); ctx.lineWidth = this.lw;
+if (bad) ctx.setLineDash([4, 6]);
+ctx.beginPath(); IL.roundPath(ctx, IL.route(from, tgt, 0), 12); ctx.stroke();
+ctx.setLineDash([]);
+ctx.fillStyle = bad ? 'rgba(43,43,46,0.5)' : col;
+ctx.beginPath(); ctx.arc(tgt.x, tgt.y, this.lw * 0.9, 0, TAU); ctx.fill();
+}
+trainPos(g, tr) {
+const lg = this.lineGeo[tr.c], L = g.lines[tr.c];
+if (!lg || !L || !lg.segs.length) return null;
+if (tr.state === 'move' && tr.to != null) {
+const pts = lg.map[tr.from + '>' + tr.to];
+if (pts) return IL.pointAt(pts, tr.p);
+}
+const st = L.stations, n = st.length, i = st.indexOf(tr.from);
+if (i < 0) return null;
+let j = i + tr.dir;
+if (L.loop && n > 2) j = (j + n) % n;
+if (j < 0 || j >= n) j = i - tr.dir;
+const pts = lg.map[tr.from + '>' + st[j]];
+if (pts) return IL.pointAt(pts, 0);
+return { x: this.sp[tr.from].x, y: this.sp[tr.from].y, ang: 0 };
+}
+drawTrain(g, tr, dt) {
+const p = this.trainPos(g, tr);
+if (!p) return;
+if (tr.sx == null) { tr.sx = p.x; tr.sy = p.y; tr.sa = p.ang; }
+const jump = Math.hypot(p.x - tr.sx, p.y - tr.sy);
+if (jump > 26) { const k = 1 - Math.exp(-(dt || 0.016) * 9); tr.sx += (p.x - tr.sx) * k; tr.sy += (p.y - tr.sy) * k; }
+else { tr.sx = p.x; tr.sy = p.y; }
+let da = p.ang - tr.sa; while (da > Math.PI) da -= TAU; while (da < -Math.PI) da += TAU;
+if (Math.abs(da) > Math.PI / 2) { tr.sa = p.ang; } else tr.sa += da * Math.min(1, (dt || 0.016) * 14);
+const ctx = this.ctx, cap = g.trainCap(), cols = Math.ceil(cap / 2), ps = Math.max(5, this.ss * 0.24);
+const w = cols * (ps + 2) + 6, h = 2 * (ps + 2) + 4;
+ctx.save(); ctx.translate(tr.sx, tr.sy); ctx.rotate(tr.sa);
+ctx.fillStyle = 'rgba(40,30,20,0.18)';
+this.rr(ctx, -w / 2 + 1, -h / 2 + 2, w, h, 3.5); ctx.fill();
+ctx.fillStyle = IL.COLORS[tr.c];
+this.rr(ctx, -w / 2, -h / 2, w, h, 3.5); ctx.fill();
+ctx.strokeStyle = 'rgba(20,20,24,0.55)'; ctx.lineWidth = 1; ctx.stroke();
+for (let k = 0; k < tr.pax.length; k++) {
+const cx = -w / 2 + 3 + (k >> 1) * (ps + 2) + ps / 2 + 1, cy = -h / 2 + 2 + (k & 1) * (ps + 2) + ps / 2 + 1;
+ctx.save(); ctx.translate(cx, cy); ctx.rotate(-tr.sa);
+this.badge(tr.pax[k].type, 0, 0, ps * 1.05, IL.PAPER2, null);
+ctx.restore();
+}
+ctx.restore();
+}
+rr(ctx, x, y, w, h, r) {
+ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+badge(type, x, y, size, fill, stroke, lw) {
+const ctx = this.ctx, k = (size / 100) * (IL.BADGES[type].k || 1);
+ctx.save(); ctx.translate(x, y); ctx.scale(k, k); ctx.translate(-50, -50);
+ctx.fillStyle = fill; ctx.fill(this.paths[type], 'evenodd');
+if (stroke) {
+ctx.strokeStyle = stroke; ctx.lineJoin = 'round'; ctx.lineWidth = (lw || 2.2) / k; ctx.stroke(this.paths[type]);
+if (this.paths[type + '_d']) { ctx.lineWidth = (lw || 2.2) * 0.6 / k; ctx.stroke(this.paths[type + '_d']); }
+}
+ctx.restore();
+}
+drawStation(g, s, now) {
+const ctx = this.ctx, p = this.sp[s.id], ss = this.ss;
+const age = g.rt - s.born, sc = s.born < 0 ? 1 : easeOutBack(Math.min(1, Math.max(0, age / 0.5)));
+if (sc <= 0.01) return;
+if (s.crowd > 0) {
+const pulse = 0.5 + 0.5 * Math.sin(now * (4 + s.crowd * 6));
+const R = ss * 0.95;
+ctx.fillStyle = `rgba(200,75,49,${0.08 + 0.12 * pulse * s.crowd})`;
+ctx.beginPath(); ctx.arc(p.x, p.y, R + 6 + pulse * 3, 0, TAU); ctx.fill();
+ctx.strokeStyle = 'rgba(43,43,46,0.14)'; ctx.lineWidth = 4;
+ctx.beginPath(); ctx.arc(p.x, p.y, R, 0, TAU); ctx.stroke();
+ctx.strokeStyle = INK; ctx.lineCap = 'round';
+ctx.beginPath(); ctx.arc(p.x, p.y, R, -Math.PI / 2, -Math.PI / 2 + TAU * s.crowd); ctx.stroke();
+}
+ctx.save(); ctx.globalAlpha = 0.16;
+this.badge(s.type, p.x + 0.8, p.y + 1.6, ss * sc, '#3a2a14', null);
+ctx.restore();
+this.badge(s.type, p.x, p.y, ss * sc, IL.PAPER2, INK, Math.max(2.2, ss * 0.1));
+}
+drawWaiting(s) {
+const p = this.sp[s.id], ps = this.ps, n = Math.min(s.wait.length, 12), g = 2.5;
+const x0 = p.x + this.ss * 0.62, y0 = p.y - ps - g / 2;
+for (let i = 0; i < n; i++) {
+const cx = x0 + (i >> 1) * (ps + g) + ps / 2, cy = y0 + (i & 1) * (ps + g) + ps / 2;
+this.badge(s.wait[i].type, cx, cy, ps, i >= IL.CAP ? '#9b3a26' : INK, null);
+}
+if (s.wait.length > 12) {
+const ctx = this.ctx; ctx.fillStyle = '#9b3a26'; ctx.font = `700 ${Math.round(ps)}px system-ui,sans-serif`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+ctx.fillText('+' + (s.wait.length - 12), x0 + 6 * (ps + g) + 2, p.y);
+}
+}
+drawFx(cam, now) {
+const ctx = this.ctx;
+this.fx = this.fx.filter(f => now - f.t0 < (f.dur || 1));
+for (const f of this.fx) {
+const k = (now - f.t0) / (f.dur || 1), p = cam.toScreen(f.x, f.y);
+if (f.type === 'ripple') {
+for (let r = 0; r < 2; r++) {
+const kk = Math.max(0, Math.min(1, k * 1.3 - r * 0.3));
+if (kk <= 0 || kk >= 1) continue;
+ctx.strokeStyle = rgba(f.col, (1 - kk) * 0.7); ctx.lineWidth = 2.5 * (1 - kk) + 0.5;
+ctx.beginPath(); ctx.arc(p.x, p.y, this.ss * (0.55 + kk * 1.3), 0, TAU); ctx.stroke();
+}
+if (k < 0.35) { ctx.fillStyle = rgba(f.col, 0.5 * (1 - k / 0.35)); ctx.beginPath(); ctx.arc(p.x, p.y, this.ss * 0.3 * (1 + k * 3), 0, TAU); ctx.fill(); }
+} else if (f.type === 'deliver') {
+for (let i = 0; i < 6; i++) {
+const a = f.a0 + (i * TAU) / 6, d = this.ss * (0.55 + 0.9 * Math.sqrt(k)), sz = 3.2 * (1 - k);
+const x = p.x + Math.cos(a) * d, y = p.y + Math.sin(a) * d;
+ctx.fillStyle = i % 2 ? rgba('#D49424', 1 - k) : rgba(f.col, 1 - k);
+ctx.beginPath(); ctx.moveTo(x, y - sz * 1.6); ctx.lineTo(x + sz * 0.45, y); ctx.lineTo(x, y + sz * 1.6); ctx.lineTo(x - sz * 0.45, y); ctx.closePath(); ctx.fill();
+ctx.beginPath(); ctx.moveTo(x - sz * 1.6, y); ctx.lineTo(x, y + sz * 0.45); ctx.lineTo(x + sz * 1.6, y); ctx.lineTo(x, y - sz * 0.45); ctx.closePath(); ctx.fill();
+}
+const pop = k < 0.2 ? easeOutBack(k / 0.2) : 1;
+ctx.save(); ctx.globalAlpha = k < 0.6 ? 1 : 1 - (k - 0.6) / 0.4;
+ctx.translate(p.x, p.y - this.ss * 0.7 - k * 22); ctx.scale(pop, pop);
+ctx.font = `800 ${Math.round(this.ss * 0.55)}px system-ui,-apple-system,sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+ctx.lineWidth = 3; ctx.strokeStyle = IL.PAPER2; ctx.strokeText('+1', 0, 0);
+ctx.fillStyle = f.col; ctx.fillText('+1', 0, 0);
+ctx.restore();
+} else if (f.type === 'spawn') {
+ctx.strokeStyle = `rgba(43,43,46,${0.5 * (1 - k)})`; ctx.lineWidth = 1.5;
+ctx.beginPath(); ctx.arc(p.x, p.y, this.ss * (0.6 + k * 1.6), 0, TAU); ctx.stroke();
+} else if (f.type === 'blocked') {
+const s = 9, a = k < 0.15 ? k / 0.15 : 1 - Math.max(0, (k - 0.6) / 0.4), sh = Math.sin(k * 40) * 3 * (1 - k);
+ctx.save(); ctx.translate(p.x + sh, p.y); ctx.globalAlpha = a;
+ctx.fillStyle = IL.PAPER2; ctx.beginPath(); ctx.arc(0, 0, s + 6, 0, TAU); ctx.fill();
+ctx.strokeStyle = '#C84B31'; ctx.lineWidth = 2; ctx.stroke();
+ctx.lineWidth = 3.2; ctx.lineCap = 'round'; ctx.beginPath();
+ctx.moveTo(-s * 0.6, -s * 0.6); ctx.lineTo(s * 0.6, s * 0.6); ctx.moveTo(s * 0.6, -s * 0.6); ctx.lineTo(-s * 0.6, s * 0.6); ctx.stroke();
+ctx.restore();
+}
+}
+}
+drawTutorial(g, now) {
+const S = g.stations;
+if (S.length < 2) return;
+const a = this.sp[S[0].id], b = this.sp[S[1].id], ctx = this.ctx;
+const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
+const c = { x: (a.x + b.x) / 2 + (dy / d) * d * 0.22, y: (a.y + b.y) / 2 - (dx / d) * d * 0.22 };
+const q = t => ({ x: (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * c.x + t * t * b.x, y: (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * c.y + t * t * b.y });
+const cyc = (now % 2.6) / 2.6;
+const t = cyc < 0.15 ? 0 : cyc > 0.78 ? 1 : (cyc - 0.15) / 0.63, e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const alpha = cyc < 0.05 ? cyc / 0.05 : cyc > 0.9 ? Math.max(0, 1 - (cyc - 0.9) / 0.1) : 1;
+ctx.save();
+for (const [pt, ph] of [[a, 0], [b, 1.3]]) {
+const k = 0.5 + 0.5 * Math.sin(now * 3.2 + ph);
+ctx.fillStyle = `rgba(200,75,49,${0.07 + 0.08 * k})`;
+ctx.beginPath(); ctx.arc(pt.x, pt.y, this.ss * (0.95 + 0.15 * k), 0, TAU); ctx.fill();
+}
+ctx.restore();
+ctx.save();
+ctx.strokeStyle = 'rgba(43,43,46,0.38)'; ctx.lineWidth = 2; ctx.setLineDash([5, 7]); ctx.lineDashOffset = -now * 18;
+ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(c.x, c.y, b.x, b.y); ctx.stroke(); ctx.setLineDash([]);
+ctx.globalAlpha = alpha * 0.75; ctx.strokeStyle = IL.COLORS[0]; ctx.lineWidth = this.lw; ctx.lineCap = 'round';
+ctx.beginPath(); ctx.moveTo(a.x, a.y);
+for (let k = 1; k <= 24; k++) { const p = q((k / 24) * e); ctx.lineTo(p.x, p.y); }
+ctx.stroke();
+if (cyc < 0.3) { const k = cyc / 0.3; ctx.globalAlpha = (1 - k) * 0.6; ctx.lineWidth = 2; ctx.strokeStyle = IL.COLORS[0]; ctx.beginPath(); ctx.arc(a.x, a.y, this.ss * (0.6 + k), 0, TAU); ctx.stroke(); }
+const p = q(e);
+ctx.globalAlpha = alpha;
+ctx.translate(p.x, p.y); ctx.rotate(-0.55);
+const s = this.ss * 1.5;
+ctx.fillStyle = 'rgba(43,43,46,0.16)'; ctx.beginPath(); ctx.ellipse(4, 3, s * 0.2, s * 0.08, 0.5, 0, TAU); ctx.fill();
+ctx.lineJoin = 'round'; ctx.strokeStyle = IL.PAPER2; ctx.lineWidth = 2;
+ctx.fillStyle = '#C9A23A';
+ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(s * 0.17, -s * 0.2, s * 0.15, -s * 0.42); ctx.lineTo(-s * 0.15, -s * 0.42); ctx.quadraticCurveTo(-s * 0.17, -s * 0.2, 0, 0); ctx.closePath();
+ctx.stroke(); ctx.fill();
+ctx.strokeStyle = INK; ctx.lineWidth = 1.1; ctx.beginPath(); ctx.moveTo(0, -s * 0.04); ctx.lineTo(0, -s * 0.28); ctx.stroke();
+ctx.fillStyle = INK; ctx.beginPath(); ctx.arc(0, -s * 0.29, s * 0.035, 0, TAU); ctx.fill();
+ctx.fillStyle = INK; ctx.strokeStyle = IL.PAPER2; ctx.lineWidth = 2;
+this.rr(ctx, -s * 0.17, -s * 1.25, s * 0.34, s * 0.84, s * 0.1); ctx.stroke(); ctx.fill();
+ctx.fillStyle = '#C9A23A'; ctx.fillRect(-s * 0.17, -s * 0.52, s * 0.34, s * 0.06);
+ctx.fillStyle = IL.COLORS[0]; ctx.beginPath(); ctx.arc(0, 0, 2.6, 0, TAU); ctx.fill();
+ctx.restore();
+}
+drawFocus(s, now) {
+const ctx = this.ctx, p = this.sp[s.id];
+if (!p) return;
+const r = this.ss * (1.6 + 0.15 * Math.sin(now * 6));
+ctx.strokeStyle = 'rgba(200,75,49,0.85)'; ctx.lineWidth = 2.5; ctx.setLineDash([6, 5]);
+ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+}
+}
+IL.Camera = Camera; IL.Renderer = Renderer;
+})();
+'use strict';
+(function () {
+const IL = window.IL;
+const SNAP = 34, HANDLE = 30, SEGHIT = 18;
+class Input {
+constructor(cv, app) {
+this.cv = cv; this.app = app; this.drag = null; this.pid = null;
+cv.addEventListener('pointerdown', e => this.down(e));
+cv.addEventListener('pointermove', e => this.move(e));
+cv.addEventListener('pointerup', e => this.up(e));
+cv.addEventListener('pointercancel', e => this.up(e, true));
+cv.addEventListener('lostpointercapture', e => { if (e.pointerId === this.pid) this.up(e, true); });
+}
+pt(e) { const r = this.cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+nearestStation(p, r, exclude) {
+const g = this.app.game, sp = this.app.R.sp;
+let best = null, bd = r;
+for (const s of g.stations) {
+if (s.id === exclude || !sp[s.id]) continue;
+const d = Math.hypot(sp[s.id].x - p.x, sp[s.id].y - p.y);
+if (d < bd) { bd = d; best = s.id; }
+}
+return best == null ? null : { id: best, d: bd };
+}
+nearestHandle(p) {
+let best = null, bd = HANDLE;
+for (const h of this.app.R.handles) { const d = Math.hypot(h.x - p.x, h.y - p.y); if (d < bd) { bd = d; best = h; } }
+return best ? { h: best, d: bd } : null;
+}
+nearestSeg(p) {
+let best = null, bd = SEGHIT;
+for (const s of this.app.R.segs) { const d = IL.distToPoly(p, s.pts); if (d < bd) { bd = d; best = s; } }
+return best;
+}
+moveSnap() {
+const sp = this.app.R.sp, ids = Object.keys(sp);
+let m = Infinity;
+for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) m = Math.min(m, Math.hypot(sp[ids[i]].x - sp[ids[j]].x, sp[ids[i]].y - sp[ids[j]].y));
+return Math.max(20, Math.min(SNAP, m * 0.45));
+}
+down(e) {
+const app = this.app, g = app.game;
+app.audio.unlock();
+if (app.mode !== 'play' || g.over || g.pending || app.paused || this.drag) return;
+e.preventDefault();
+const p = this.pt(e), st = this.nearestStation(p, SNAP), hd = this.nearestHandle(p);
+let drag = null;
+const sgHit = this.nearestSeg(p);
+const segD = sgHit ? IL.distToPoly(p, sgHit.pts) : Infinity;
+if (sgHit && st && !(hd && hd.d < st.d) && segD < st.d * 0.4 && st.d > 16) drag = { kind: 'insert', c: sgHit.c, i: sgHit.idx, moved: false, start: p };
+else if (hd && (!st || hd.d * 0.85 <= st.d)) drag = { kind: 'extend', c: hd.h.c, end: hd.h.end, cur: g.endSid(g.lines[hd.h.c], hd.h.end) };
+else if (st) {
+const c = g.freeColor(app.sel);
+if (c >= 0) drag = { kind: 'new', a: st.id, c };
+else {
+const order = [app.sel, 0, 1, 2, 3, 4].filter(c => c >= 0);
+for (const c of order) {
+const L = g.lines[c];
+if (!L || L.loop) continue;
+if (L.stations[0] === st.id) { drag = { kind: 'extend', c, end: 'head', cur: st.id }; break; }
+if (L.stations[L.stations.length - 1] === st.id) { drag = { kind: 'extend', c, end: 'tail', cur: st.id }; break; }
+}
+if (!drag) app.flashPalette();
+}
+} else {
+const sg = sgHit;
+if (sg) drag = { kind: 'insert', c: sg.c, i: sg.idx, moved: false, start: p };
+else app.select(-1);
+}
+if (!drag) return;
+drag.p = p; drag.snap = null;
+this.drag = drag; this.pid = e.pointerId;
+try { this.cv.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ }
+g.gestureStart();
+if (drag.kind !== 'insert') app.audio.tick();
+}
+move(e) {
+const d = this.drag;
+if (!d || e.pointerId !== this.pid) return;
+e.preventDefault();
+const app = this.app, g = app.game, p = this.pt(e);
+d.p = p;
+const hit = this.nearestStation(p, d.kind === 'insert' ? SNAP : this.moveSnap());
+d.snap = hit ? hit.id : null;
+if (d.kind === 'insert') { if (Math.hypot(p.x - d.start.x, p.y - d.start.y) > 8) d.moved = true; return; }
+if (d.snap == null) { d.badSnap = null; return; }
+if (d.kind === 'new') {
+if (d.snap === d.a) return;
+if (d.badSnap === d.snap) return;
+const r = g.createLine(d.c, d.a, d.snap);
+if (r === 'ok') { this.drag = Object.assign(d, { kind: 'extend', end: 'tail', cur: d.snap }); app.select(-1); }
+else if (r === 'nobridge') d.badSnap = d.snap;
+return;
+}
+if (d.kind === 'extend') {
+const L = g.lines[d.c];
+if (!L || d.snap === d.cur || L.loop) return;
+if (d.badSnap === d.snap) return;
+const prev = g.prevSid(L, d.end);
+if (d.snap === prev && g.endSid(L, d.end) === d.cur) { g.retract(d.c, d.end); d.cur = prev; return; }
+if (L.stations.includes(d.snap)) {
+const other = d.end === 'head' ? L.stations[L.stations.length - 1] : L.stations[0];
+if (d.snap === other && L.stations.length >= 3) {
+const r = g.closeLoop(d.c);
+if (r === 'ok') { this.finish(); } else if (r === 'nobridge') d.badSnap = d.snap;
+}
+return;
+}
+const r = g.extend(d.c, d.end, d.snap);
+if (r === 'ok') d.cur = d.snap; else if (r === 'nobridge') d.badSnap = d.snap;
+}
+}
+up(e, cancel) {
+const d = this.drag;
+if (!d || (e && e.pointerId !== this.pid)) return;
+const app = this.app, g = app.game;
+if (d.kind === 'insert' && !cancel) {
+const p = e ? this.pt(e) : d.p, hit = this.nearestStation(p, SNAP);
+const L = g.lines[d.c];
+if (hit && L && !L.stations.includes(hit.id)) g.insert(d.c, d.i, hit.id);
+else if (!d.moved) app.select(app.sel === d.c ? -1 : d.c);
+}
+this.finish();
+}
+finish() {
+const g = this.app.game;
+try { if (this.pid != null) this.cv.releasePointerCapture(this.pid); } catch (_) { /* ignore */ }
+this.drag = null; this.pid = null;
+g.gestureEnd();
+}
+cancel() { if (this.drag) this.finish(); }
+}
+IL.Input = Input;
+})();
+'use strict';
+(function () {
+const IL = window.IL, $ = id => document.getElementById(id);
+const ICON = {
+pause: '<svg viewBox="0 0 20 20"><rect x="5" y="4" width="3.4" height="12" rx="1.2"/><rect x="11.6" y="4" width="3.4" height="12" rx="1.2"/></svg>',
+snd: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></svg>',
+mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>',
+undo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4.5 11.5 9 16"/><path d="M5 11.5h9a5 5 0 0 1 0 10h-2"/></svg>',
+bridge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15h20M3 11h18M5 11v4M19 11v4M5 15l3-4 3 4 2-4 3 4 3-4"/><path d="M2 19c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1 2-1 4-1" opacity=".55"/></svg>',
+pax: '<svg viewBox="0 0 100 100"><path d="M18 90V46A32 32 0 0 1 82 46V90H62V60A12 12 0 0 0 38 60V90Z"/></svg>'
+};
+const UPG_SVG = {
+line: c => `<svg viewBox="0 0 80 52"><path d="M8 40H28L42 26H72" fill="none" stroke="${c}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="40" r="6.5" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2.2"/><path d="M40 18l6 8-6 8-6-8z" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2.2"/><path d="M66 18h12v16H66z" fill="#FBF7EE" stroke="#2B2B2E" stroke-width="2.2"/><path d="M60 8v10M55 13h10" stroke="#2B2B2E" stroke-width="2.4" stroke-linecap="round"/></svg>`,
+train: c => `<svg viewBox="0 0 80 52"><path d="M4 36H76" stroke="${c}" stroke-width="5" stroke-linecap="round"/><rect x="10" y="22" width="28" height="16" rx="3.5" fill="${c}" stroke="#2B2B2E" stroke-width="1.4"/><rect x="42" y="22" width="28" height="16" rx="3.5" fill="${c}" stroke="#2B2B2E" stroke-width="1.4" opacity=".85"/><g fill="#FBF7EE"><rect x="14" y="26" width="5" height="5" rx="1"/><rect x="21" y="26" width="5" height="5" rx="1"/><rect x="28" y="26" width="5" height="5" rx="1"/><rect x="46" y="26" width="5" height="5" rx="1"/><rect x="53" y="26" width="5" height="5" rx="1"/><rect x="60" y="26" width="5" height="5" rx="1"/></g><path d="M56 6v10M51 11h10" stroke="#2B2B2E" stroke-width="2.4" stroke-linecap="round"/></svg>`,
+express: c => `<svg viewBox="0 0 80 52"><path d="M22 36H78" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M34 22h30a8 8 0 0 1 8 8v8H34z" fill="${c}" stroke="#2B2B2E" stroke-width="1.4" stroke-linejoin="round"/><g stroke="#2B2B2E" stroke-width="2.4" stroke-linecap="round"><path d="M4 24h20M8 31h16M2 38h18"/></g><rect x="40" y="26" width="6" height="5" rx="1" fill="#FBF7EE"/><rect x="49" y="26" width="6" height="5" rx="1" fill="#FBF7EE"/><rect x="58" y="26" width="6" height="5" rx="1" fill="#FBF7EE"/></svg>`,
+bridge: c => `<svg viewBox="0 0 80 52"><path d="M0 38q7-4 14 0t14 0t14 0t14 0t14 0t14 0" fill="none" stroke="#8E9CA3" stroke-width="3"/><rect x="0" y="34" width="80" height="18" fill="#8E9CA3" opacity=".55"/><path d="M8 26H72" stroke="${c}" stroke-width="5" stroke-linecap="round"/><g fill="none" stroke="#2B2B2E" stroke-width="1.4"><path d="M12 20H68M12 31H68"/><path d="M12 31l7-11 7 11 7-11 7 11 7-11 7 11 7-11 7 11"/></g><path d="M12 16v18M68 16v18" stroke="#2B2B2E" stroke-width="3" stroke-linecap="round"/></svg>`
+};
+IL.ICON = ICON;
+class UI {
+constructor(app) {
+this.app = app; this.sig = ''; this.last = {};
+$('mute').innerHTML = ICON.snd; $('tmute').innerHTML = ICON.snd; $('undo').innerHTML = ICON.undo;
+$('brI').innerHTML = ICON.bridge; $('scI').innerHTML = ICON.pax;
+$('sp0').innerHTML = ICON.pause;
+$('play').onclick = () => app.start();
+$('lang').onclick = () => app.toggleLang();
+$('tmute').onclick = () => app.toggleMute();
+$('mute').onclick = () => app.toggleMute();
+$('undo').onclick = () => app.undo();
+for (const b of document.querySelectorAll('#speed button')) b.onclick = () => app.setSpeed(+b.dataset.s);
+this.dial();
+this.texts();
+}
+dial() {
+let s = '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="rgba(43,43,46,.12)" stroke-width="4"/>';
+for (let i = 0; i < 7; i++) {
+const a0 = (i / 7) * Math.PI * 2 - Math.PI / 2 + 0.06, a1 = ((i + 1) / 7) * Math.PI * 2 - Math.PI / 2 - 0.06;
+const p = a => `${(20 + 17 * Math.cos(a)).toFixed(2)} ${(20 + 17 * Math.sin(a)).toFixed(2)}`;
+s += `<path id="d${i}" d="M${p(a0)}A17 17 0 0 1 ${p(a1)}" fill="none" stroke-width="4" stroke-linecap="butt"/>`;
+}
+s += '<g id="dh"><circle cx="20" cy="3" r="2.6" fill="#C84B31" stroke="#FBF7EE" stroke-width="1.2"/></g></svg><b id="wk">1</b>';
+$('dial').innerHTML = s;
+}
+texts() {
+const t = IL.t;
+$('play').textContent = t('play');
+$('lang').textContent = IL.lang === 'tr' ? 'TR' : 'EN';
+document.documentElement.lang = IL.lang;
+$('undo').setAttribute('aria-label', t('undo')); $('mute').setAttribute('aria-label', t('sound')); $('tmute').setAttribute('aria-label', t('sound'));
+$('sp0').setAttribute('aria-label', t('pause')); $('bridges').title = t('bridges'); $('score').title = t('score');
+this.sig = '';
+}
+setMuteIcon(m) { $('mute').innerHTML = m ? ICON.mute : ICON.snd; $('tmute').innerHTML = m ? ICON.mute : ICON.snd; }
+showGame(on) {
+$('hud').classList.toggle('hide', !on); $('bar').classList.toggle('hide', !on);
+$('title').classList.toggle('hide', on);
+}
+sync(g) {
+const app = this.app, set = (k, v, fn) => { if (this.last[k] !== v) { this.last[k] = v; fn(v); } };
+set('sc', g.score, v => { $('sc').textContent = v; $('score').classList.remove('bump'); void $('score').offsetWidth; if (v) $('score').classList.add('bump'); });
+set('br', g.bridgesLeft(), v => { $('br').textContent = v; $('bridges').classList.toggle('zero', v <= 0); });
+set('wk', g.week, v => { $('wk').textContent = v; });
+const day = g.clockOn ? g.day : -1, frac = g.clockOn ? g.weekFrac : 0;
+set('day', day + ':' + (g.rush ? 1 : 0), () => {
+for (let i = 0; i < 7; i++) {
+const el = $('d' + i);
+el.setAttribute('stroke', i < day ? '#2B2B2E' : i === day ? (g.rush ? '#D49424' : '#2B2B2E') : 'transparent');
+el.setAttribute('opacity', i === day ? '0.55' : '1');
+if (i === 1 || i === 4) { if (i > day) el.setAttribute('stroke', 'rgba(212,148,36,.35)'); }
+}
+$('dial').classList.toggle('rush', !!g.rush);
+});
+const ang = frac * 360;
+$('dh').setAttribute('transform', `rotate(${ang.toFixed(1)} 20 20)`);
+set('spd', app.paused ? 0 : app.speed, v => { for (const b of document.querySelectorAll('#speed button')) b.classList.toggle('on', +b.dataset.s === v); });
+set('undo', !!g.undoSnap, v => { $('undo').disabled = !v; });
+const sig = [g.colorsUnlocked, app.sel, IL.lang, ...g.lines.map(L => (L ? 1 : 0))].join(',');
+if (sig !== this.sig) { this.sig = sig; this.palette(g); }
+}
+palette(g) {
+const app = this.app, pal = $('pal');
+pal.innerHTML = '';
+for (let c = 0; c < 5; c++) {
+const b = document.createElement('button');
+const locked = c >= g.colorsUnlocked, used = !!g.lines[c];
+b.className = 'pill' + (locked ? ' locked' : used ? ' used' : ' unused') + (app.sel === c ? ' on' : '');
+b.style.setProperty('--c', IL.COLORS[c]);
+b.dataset.c = c;
+b.innerHTML = '<i></i>';
+b.setAttribute('aria-label', 'line ' + (c + 1));
+if (locked) b.disabled = true;
+else b.onclick = () => { app.audio.unlock(); app.select(app.sel === c ? -1 : c); app.audio.tick(); };
+if (!locked && used && app.sel === c) {
+const x = document.createElement('span');
+x.className = 'x'; x.textContent = '×'; x.setAttribute('role', 'button'); x.setAttribute('aria-label', IL.t('del'));
+x.onclick = ev => { ev.stopPropagation(); app.deleteLine(c); };
+b.appendChild(x);
+}
+pal.appendChild(b);
+}
+}
+flash(id) { const el = $(id); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
+modal(html, cls) {
+const m = $('modal');
+m.className = cls || '';
+$('mc').innerHTML = html;
+m.classList.remove('hide');
+}
+hideModal() { $('modal').classList.add('hide'); $('mc').innerHTML = ''; }
+upgrade(g, onPick) {
+const t = IL.t, nextCol = IL.COLORS[Math.min(4, g.colorsUnlocked)];
+const cards = g.pending.map(k => {
+const col = k === 'line' ? nextCol : k === 'bridge' ? '#C84B31' : k === 'express' ? '#284B8C' : '#2A7B5F';
+return `<button class="up" data-k="${k}">${UPG_SVG[k](col)}<b>${t('up_' + k)}</b><span>${t('up_' + k + '_d')}</span></button>`;
+}).join('');
+this.modal(`<div class="kick">${t('week')} ${g.week}</div><h2>${t('choose')}</h2><div class="ups">${cards}</div>`, 'm-up');
+for (const b of document.querySelectorAll('#mc .up')) b.onclick = () => onPick(b.dataset.k);
+}
+gameOver(g, onCont, onAgain) {
+const t = IL.t, can = !g.continued;
+const ft = g.focus ? g.focus.type : 'arch';
+const badge = `<svg class="gob" viewBox="-14 -14 128 128" aria-hidden="true"><circle cx="50" cy="50" r="60" fill="none" stroke="#C84B31" stroke-width="7" stroke-dasharray="20 9"/><path d="${IL.BADGES[ft].d}" fill="#FBF7EE" fill-rule="evenodd" stroke="#2B2B2E" stroke-width="8" stroke-linejoin="round"/></svg>`;
+this.modal(`${badge}<div class="kick">${t('week')} ${g.week}</div><h2>${t('over')}</h2><div class="big" id="goScore">${g.score}</div><div class="sub">${t('pax')}</div>
+<div class="btns"><button class="btn b1" id="goCont" ${can ? '' : 'disabled'}>${t('cont')}</button><button class="btn b2" id="goAgain">${t('again')}</button></div>`, 'm-over');
+$('goCont').onclick = () => { if (can) onCont(); };
+$('goAgain').onclick = onAgain;
+}
+ad(onDone) {
+const t = IL.t;
+this.modal(`<div class="adtag">TEST</div><h2>${t('ad')}</h2><div class="sub">${t('ad_d')}</div><div class="bar"><i></i></div>`, 'm-ad');
+setTimeout(onDone, 1500);
+}
+pause(app) {
+const t = IL.t;
+this.modal(`<h2>${t('paused')}</h2><div class="btns"><button class="btn b2" id="pRes">${t('resume')}</button><button class="btn b3" id="pRst">${t('restart')}</button></div>
+<div class="row"><div class="seg2"><button id="pEN" class="${IL.lang === 'en' ? 'on' : ''}">EN</button><button id="pTR" class="${IL.lang === 'tr' ? 'on' : ''}">TR</button></div>
+<button class="chip btn-snd" id="pSnd">${app.audio.muted ? ICON.mute : ICON.snd}</button></div>`, 'm-pause');
+$('pRes').onclick = () => app.resume();
+$('pRst').onclick = () => app.start();
+$('pEN').onclick = () => { app.setLang('en'); this.pause(app); };
+$('pTR').onclick = () => { app.setLang('tr'); this.pause(app); };
+$('pSnd').onclick = () => { app.toggleMute(); this.pause(app); };
+}
+}
+IL.UI = UI;
+})();
+'use strict';
+(function () {
+const IL = window.IL, $ = id => document.getElementById(id);
+const qs = new URLSearchParams(location.search);
+const app = {
+mode: 'title', paused: false, speed: 1, sel: -1, warp: 1, overAt: 0, overShown: false, heartT: 0, adActive: false,
+stats: { delivered: 0, connects: 0, blocked: 0, upgrades: 0, gameovers: 0 }
+};
+IL.app = app;
+const cv = $('c');
+app.R = new IL.Renderer(cv);
+app.cam = new IL.Camera();
+app.audio = new IL.Sound();
+try { app.audio.muted = localStorage.getItem('inklines_mute') === '1'; } catch (e) { /* ignore */ }
+app.game = new IL.Game({ demo: true, seed: 7 });
+app.ui = new IL.UI(app);
+app.ui.setMuteIcon(app.audio.muted);
+app.input = new IL.Input(cv, app);
+app.start = function () {
+app.audio.unlock();
+app.input.cancel();
+const seed = qs.has('seed') ? +qs.get('seed') : undefined;
+app.game = new IL.Game({ seed });
+app.mode = 'play'; app.paused = false; app.speed = 1; app.sel = -1; app.overShown = false; app.adActive = false;
+app.R.fx = [];
+app.ui.hideModal(); app.ui.showGame(true); app.ui.sig = ''; app.ui.last = {};
+app.audio.tick();
+};
+app.select = function (c) { app.sel = c; };
+app.flashPalette = function () { app.ui.flash('pal'); app.audio.buzz(); };
+app.deleteLine = function (c) { app.game.deleteLine(c); app.sel = -1; };
+app.undo = function () { app.audio.unlock(); if (app.game.undo()) app.sel = -1; };
+app.setSpeed = function (s) {
+app.audio.unlock(); app.audio.tick();
+if (app.mode !== 'play' || app.game.over || app.game.pending) return;
+if (s === 0) { app.pause(); return; }
+app.speed = s;
+if (app.paused) app.resume();
+};
+app.pause = function () {
+if (app.mode !== 'play' || app.game.over || app.game.pending || app.adActive) return;
+app.input.cancel();
+app.paused = true; app.ui.pause(app);
+};
+app.resume = function () { app.paused = false; app.ui.hideModal(); };
+app.setLang = function (l) {
+IL.lang = l;
+try { localStorage.setItem('inklines_lang', l); } catch (e) { /* ignore */ }
+app.ui.texts();
+};
+app.toggleLang = function () { app.audio.unlock(); app.audio.tick(); app.setLang(IL.lang === 'tr' ? 'en' : 'tr'); };
+app.toggleMute = function () {
+app.audio.unlock();
+app.audio.setMuted(!app.audio.muted);
+try { localStorage.setItem('inklines_mute', app.audio.muted ? '1' : '0'); } catch (e) { /* ignore */ }
+app.ui.setMuteIcon(app.audio.muted);
+app.audio.tick();
+};
+app.pickUpgrade = function (k) {
+if (app.game.applyUpgrade(k)) { app.ui.hideModal(); app.stats.upgrades++; }
+};
+app.continueAd = function () {
+if (app.game.continued || app.adActive) return;
+app.adActive = true;
+app.ui.ad(() => {
+app.adActive = false;
+if (app.game.continueRun()) { app.overShown = false; app.ui.hideModal(); app.audio.reward(); }
+});
+};
+function handleEvents(g) {
+const R = app.R, a = app.audio;
+for (const e of g.events) {
+if (g.demo) { if (e.k === 'deliver') R.addFx({ type: 'deliver', x: e.s.x, y: e.s.y, col: IL.COLORS[e.c], a0: Math.random() * 6, dur: 0.9 }); continue; }
+switch (e.k) {
+case 'connect': {
+app.stats.connects++;
+for (const sid of [e.a, e.b]) { const s = g.byId[sid]; R.addFx({ type: 'ripple', x: s.x, y: s.y, col: IL.COLORS[e.c], dur: 0.7 }); }
+a.ink(); break;
+}
+case 'deliver': app.stats.delivered++; R.addFx({ type: 'deliver', x: e.s.x, y: e.s.y, col: IL.COLORS[e.c], a0: Math.random() * 6, dur: 0.9 }); a.deliver(e.c); break;
+case 'spawn': if (g.rt > 0.05) { R.addFx({ type: 'spawn', x: e.s.x, y: e.s.y, dur: 0.8 }); a.spawn(); } break;
+case 'blocked': app.stats.blocked++; R.addFx({ type: 'blocked', x: e.x, y: e.y, dur: 1.1 }); app.ui.flash('bridges'); a.buzz(); break;
+case 'retract': case 'delete': case 'undo': a.thud(); break;
+case 'rush': a.chime(); break;
+case 'upgrade': app.input.cancel(); a.chord(); app.ui.upgrade(g, app.pickUpgrade); break;
+case 'gameover': app.stats.gameovers++; app.input.cancel(); app.overAt = performance.now(); a.over(); break;
+case 'cleared': for (const s of g.stations) R.addFx({ type: 'spawn', x: s.x, y: s.y, dur: 0.8 }); break;
+}
+}
+g.events.length = 0;
+}
+function measure() {
+const r = app.R, hud = $('hud'), bar = $('bar');
+const vw = r.vw, vh = r.vh;
+let top = 12, bottom = vh - 12, left = 12, right = vw - 12;
+if (app.mode === 'play') {
+const hb = hud.getBoundingClientRect(), bb = $('pal').getBoundingClientRect();
+top = hb.bottom + 8;
+if (bb.height > bb.width) { left = bb.right + 8; top = Math.min(top, 56); }
+else bottom = bb.top - 8;
+void bar;
+}
+const cs = getComputedStyle(document.documentElement);
+const sl = parseFloat(cs.getPropertyValue('--sl')) || 0, sr = parseFloat(cs.getPropertyValue('--sr')) || 0;
+left += sl; right -= sr;
+return { x: left, y: top, w: Math.max(50, right - left), h: Math.max(50, bottom - top) };
+}
+let last = performance.now(), frames = 0;
+function frame(ts) {
+const now = ts / 1000, dt = Math.min(0.05, Math.max(0, (ts - last) / 1000));
+last = ts;
+const g = app.game, cam = app.cam;
+const blocked = app.paused || g.pending || g.over || app.adActive;
+if (app.mode === 'title') g.update(dt);
+else if (!blocked) {
+let gdt = dt * app.speed * app.warp;
+while (gdt > 0) { const st = Math.min(0.025, gdt); g.update(st); gdt -= st; if (g.pending || g.over) break; }
+} else g.rt += 0;
+handleEvents(g);
+let maxC = 0; for (const s of g.stations) maxC = Math.max(maxC, s.crowd);
+if (maxC > 0 && !blocked && app.mode === 'play') {
+app.heartT -= dt;
+if (app.heartT <= 0) { app.audio.heart(maxC); app.heartT = 1.25 - maxC * 0.55; }
+} else app.heartT = 0.2;
+if (g.over && !app.overShown && performance.now() - app.overAt > 1300) {
+app.overShown = true;
+app.ui.gameOver(g, app.continueAd, app.start);
+}
+const land = app.R.vw > app.R.vh * 1.05;
+const snap = land !== cam.land;
+cam.land = land;
+cam.rect = measure();
+let tgt;
+if (app.mode === 'title') tgt = cam.target(g.stations, 50, 420);
+else if (g.over && g.focus) { const f = g.focus; tgt = cam.target([f], 0, 160); }
+else tgt = cam.target(g.stations.filter(s => g.rt - s.born > 0 || s.born < 0), 64, 320);
+if (!app.input.drag || snap) cam.step(tgt, dt, snap || app.snapCam);
+app.snapCam = false;
+app.R.draw(g, cam, { now, dt, sel: app.sel, drag: app.input.drag, rect: cam.rect, tutorial: app.mode === 'play' && g.stage === 0 && !g.over });
+if (app.mode === 'play') app.ui.sync(g);
+frames++;
+if (frames === 1) { window.__il.firstFrame = performance.now(); document.body.classList.add('ready'); }
+requestAnimationFrame(frame);
+}
+const onResize = () => { app.R.resize(); };
+window.addEventListener('resize', onResize);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', onResize);
+document.addEventListener('visibilitychange', () => { if (document.hidden) app.pause(); });
+for (const ev of ['gesturestart', 'dblclick', 'contextmenu']) document.addEventListener(ev, e => e.preventDefault(), { passive: false });
+document.addEventListener('touchmove', e => { if (e.touches.length > 1 || e.target === cv) e.preventDefault(); }, { passive: false });
+window.addEventListener('keydown', e => {
+if (app.mode !== 'play') { if (e.key === 'Enter') app.start(); return; }
+if (e.key === ' ' || e.key === 'Escape' || e.key === 'p') { e.preventDefault(); app.paused ? app.resume() : app.pause(); }
+else if (e.key === '1') app.setSpeed(1); else if (e.key === '2') app.setSpeed(2);
+else if ((e.ctrlKey || e.metaKey) && e.key === 'z') app.undo();
+});
+window.__il = {
+app, get game() { return app.game; },
+screenOf(id) { const p = app.R.sp[id]; return p ? { x: p.x, y: p.y } : null; },
+handle(c, end) { const h = app.R.handles.find(h => h.c === c && h.end === end); return h ? { x: h.x, y: h.y } : null; },
+segMid(c, i) {
+const s = app.R.segs.find(s => s.c === c && s.idx === i); if (!s) return null;
+let best = null, bd = -1;
+for (let k = 2; k <= 18; k++) {
+const p = IL.pointAt(s.pts, k / 20); let m = Infinity;
+for (const id in app.R.sp) m = Math.min(m, Math.hypot(app.R.sp[id].x - p.x, app.R.sp[id].y - p.y));
+if (m > bd) { bd = m; best = p; }
+}
+return { x: best.x, y: best.y };
+},
+state() {
+const g = app.game;
+return {
+mode: app.mode, paused: app.paused, speed: app.speed, score: g.score, week: g.week, t: g.t, stage: g.stage, over: g.over, continued: g.continued,
+stations: g.stations.map(s => ({ id: s.id, type: s.type, bank: s.bank, wait: s.wait.length, crowd: +s.crowd.toFixed(3) })),
+lines: g.lines.map(L => (L ? { c: L.c, stations: L.stations.slice(), loop: L.loop } : null)),
+trains: g.trains.map(t => ({ c: t.c, pax: t.pax.length, state: t.state })),
+bridgesLeft: g.bridgesLeft(), bridgesOwned: g.bridgesOwned, colorsUnlocked: g.colorsUnlocked, trainsOwned: g.trainsOwned,
+capBonus: g.capBonus, express: g.express, pending: g.pending, blocked: g.blockedCount, undo: !!g.undoSnap, lang: IL.lang, sel: app.sel
+};
+},
+spawnStations(n) { for (let i = 0; i < n; i++) { const s = app.game.spawnNext(); if (s) s.born = app.game.rt - 1; } },
+forceWeekEnd() { const g = app.game; if (!g.clockOn) g.startClock(); g.t = (g.weeksDone + 1) * IL.WEEK - 0.02; },
+overfill(id, crowd) { const g = app.game, s = g.byId[id]; while (s.wait.length < IL.CAP + 8) g.spawnPax(s); s.crowd = crowd == null ? 0.97 : crowd; },
+setWarp(w) { app.warp = w; },
+settle() { app.snapCam = true; }
+};
+requestAnimationFrame(frame);
+})();
+</script></body></html>
